@@ -1,0 +1,1719 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BIA &bull; Base Integrada de Aplicações | Soluções sob Medida</title>
+  
+  <!-- Fontes do Google: Plus Jakarta Sans & Inter (Idênticas ao Sasico) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <style>
+    :root {
+      /* Cores Globais Inspiradas no Sasico */
+      --theme-color: #004FFC;
+      --theme-color-hover: #003ECC;
+      --theme-light: #EDF4FF;
+      --theme-ice: #EDF2FF;
+      --theme-pill: #E2ECFF;
+      
+      /* Superfícies Claras */
+      --light-bg: #FFFFFF;
+      --light-surface: #F8FAFC;
+      --light-border: #E2E8F0;
+      --title-dark: #021B42;
+      --body-dark: #64748B;
+      
+      /* Superfícies Escuras */
+      --dark-bg: #000B1A;
+      --dark-surface: #00122B;
+      --white: #FFFFFF;
+      
+      /* Tipografia */
+      --font-title: 'Plus Jakarta Sans', sans-serif;
+      --font-body: 'Inter', sans-serif;
+    }
+
+    html, body {
+      width: 100%;
+      margin: 0;
+      padding: 0;
+      background-color: var(--dark-bg);
+      color: var(--title-dark);
+      overflow-x: hidden;
+      font-family: var(--font-body);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+      font-family: var(--font-title);
+    }
+
+    /* Faixa Hero 100% de Ponta a Ponta */
+    .sasico-hero-bg {
+      width: 100%;
+      background-color: #000B1A;
+      background-image: 
+        radial-gradient(circle at 50% 0%, rgba(0, 79, 252, 0.35) 0%, rgba(0, 11, 26, 0) 75%),
+        linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+      background-size: 100% 100%, 48px 48px, 48px 48px;
+    }
+
+    /* Faixa Azul Gelo 100% de Ponta a Ponta */
+    .sasico-ice-bg {
+      width: 100%;
+      background-color: #EDF2FF;
+      background-image: 
+        radial-gradient(circle at 50% 100%, rgba(0, 79, 252, 0.06) 0%, transparent 60%);
+    }
+
+    /* Botão Signature Sasico (Texto + Círculo com Seta) */
+    .btn-sasico-primary {
+      background-color: var(--theme-color);
+      color: var(--white);
+      font-family: var(--font-title);
+      font-weight: 700;
+      border-radius: 9999px;
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 12px 10px 24px;
+      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 10px 25px -5px rgba(0, 79, 252, 0.4);
+    }
+
+    .btn-sasico-primary .arrow-circle {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background-color: var(--white);
+      color: var(--theme-color);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.35s ease;
+    }
+
+    .btn-sasico-primary:hover {
+      background-color: var(--theme-color-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 15px 30px -5px rgba(0, 79, 252, 0.55);
+    }
+
+    .btn-sasico-primary:hover .arrow-circle {
+      transform: translateX(4px);
+    }
+
+    .btn-sasico-secondary {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      color: var(--white);
+      font-family: var(--font-title);
+      font-weight: 600;
+      border-radius: 9999px;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 28px;
+      transition: all 0.3s ease;
+    }
+
+    .btn-sasico-secondary:hover {
+      background: rgba(255, 255, 255, 0.15);
+      border-color: rgba(255, 255, 255, 0.35);
+      transform: translateY(-2px);
+    }
+
+    /* Pílulas Sasico */
+    .pill-sasico-light {
+      background-color: var(--theme-pill);
+      color: var(--theme-color);
+      border-radius: 9999px;
+      padding: 6px 16px;
+      font-size: 13px;
+      font-weight: 600;
+      display: inline-block;
+    }
+
+    /* Cards Brancos com Efeito Sasico */
+    .sasico-white-card {
+      background-color: #FFFFFF;
+      border: 1px solid rgba(0, 79, 252, 0.08);
+      border-radius: 20px;
+      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 4px 20px -2px rgba(2, 27, 66, 0.04);
+    }
+    .sasico-white-card:hover {
+      border-color: rgba(0, 79, 252, 0.35);
+      transform: translateY(-5px);
+      box-shadow: 0 20px 40px -15px rgba(0, 79, 252, 0.15);
+    }
+
+    /* Janela de Mockup Hero */
+    .mockup-window {
+      background: #020C1C;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 24px;
+      box-shadow: 0 30px 70px -15px rgba(0, 0, 0, 0.8), 0 0 50px -10px rgba(0, 79, 252, 0.2);
+    }
+
+    /* Texto com Gradiente Suave */
+    .text-sasico-gradient {
+      background: linear-gradient(135deg, #FFFFFF 30%, #C4D7FE 70%, #004FFC 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    /* Animações e Estilos da Vitrine 3D Showroom */
+    @keyframes float-showroom {
+      0% {
+        transform: translateY(0px) rotate(0deg);
+      }
+      100% {
+        transform: translateY(-12px) rotate(0.2deg);
+      }
+    }
+
+    @keyframes float-badge-left {
+      0% {
+        transform: translateY(0px);
+      }
+      100% {
+        transform: translateY(-9px);
+      }
+    }
+
+    @keyframes float-badge-right {
+      0% {
+        transform: translateY(0px);
+      }
+      100% {
+        transform: translateY(9px);
+      }
+    }
+
+    .animate-float-showroom {
+      animation: float-showroom 7s ease-in-out infinite alternate;
+    }
+
+    .animate-float-badge-left {
+      animation: float-badge-left 5.5s ease-in-out infinite alternate;
+    }
+
+    .animate-float-badge-right {
+      animation: float-badge-right 6.5s ease-in-out infinite alternate;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .animate-float-showroom,
+      .animate-float-badge-left,
+      .animate-float-badge-right {
+        animation: none !important;
+        transform: none !important;
+      }
+    }
+
+    .showroom-stage-bg {
+      background: radial-gradient(ellipse at 50% 50%, rgba(0, 79, 252, 0.08) 0%, rgba(248, 250, 252, 0.6) 45%, #FFFFFF 100%),
+                  linear-gradient(180deg, #FFFFFF 0%, #F8FAFC 50%, #FFFFFF 100%);
+    }
+
+    .showroom-floating-card {
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 1px solid rgba(0, 79, 252, 0.12);
+      box-shadow: 0 20px 35px -10px rgba(0, 79, 252, 0.12), 0 1px 3px rgba(0, 0, 0, 0.04);
+      border-radius: 16px;
+      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .showroom-floating-card:hover {
+      transform: translateY(-4px) scale(1.02);
+      border-color: rgba(0, 79, 252, 0.35);
+      box-shadow: 0 25px 45px -10px rgba(0, 79, 252, 0.22);
+    }
+
+    /* Perspectiva Tridimensional dos Celulares nos Cards (Proporções Reais iPhone Pro 19.5:9) */
+    .phone-3d-stage {
+      perspective: 1200px;
+      perspective-origin: center 45%;
+      height: 360px !important;
+      min-height: 360px !important;
+    }
+
+    .phone-3d-device {
+      width: 155px !important;
+      height: 310px !important;
+      border-radius: 32px !important;
+      transform-style: preserve-3d;
+      transform: rotateY(-18deg) rotateX(14deg) rotateZ(-3deg);
+      box-shadow: 
+        1px 1px 0px #475569,
+        2px 2px 0px #334155,
+        3px 3px 0px #1e293b,
+        4px 4px 0px #0f172a,
+        5px 5px 0px #020617,
+        14px 24px 38px -4px rgba(2, 6, 23, 0.45),
+        0 20px 35px -8px rgba(0, 79, 252, 0.2);
+      transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .group:hover .phone-3d-device {
+      transform: rotateY(-8deg) rotateX(8deg) rotateZ(-1deg) translateY(-10px) scale(1.02);
+      box-shadow: 
+        1px 1px 0px #475569,
+        2px 2px 0px #334155,
+        3px 3px 0px #1e293b,
+        4px 4px 0px #0f172a,
+        6px 6px 0px #020617,
+        18px 32px 48px -4px rgba(2, 6, 23, 0.5),
+        0 25px 45px -8px rgba(0, 79, 252, 0.3);
+    }
+
+    .phone-3d-shadow {
+      position: absolute;
+      bottom: 14px;
+      left: 50%;
+      transform: translateX(-50%) rotateX(65deg);
+      width: 130px;
+      height: 28px;
+      background: radial-gradient(ellipse at center, rgba(15, 23, 42, 0.45) 0%, rgba(0, 79, 252, 0.2) 50%, transparent 75%);
+      filter: blur(8px);
+      transition: all 0.5s ease;
+      pointer-events: none;
+    }
+
+    .group:hover .phone-3d-shadow {
+      transform: translateX(-50%) rotateX(65deg) scale(0.9);
+      opacity: 0.65;
+    }
+
+    .phone-glare {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.28) 0%, rgba(255, 255, 255, 0.08) 28%, transparent 55%);
+      pointer-events: none;
+      z-index: 25;
+      border-radius: 30px;
+    }
+
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #000B1A;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #11284E;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--theme-color);
+    }
+  </style>
+</head>
+<body class="w-full bg-[#000B1A]">
+
+  <!-- ========================================================================= -->
+  <!-- 1. HEADER (LARGURA 100% DE PONTA A PONTA, FIXO NO TOPO)                   -->
+  <!-- ========================================================================= -->
+  <header class="fixed top-0 left-0 right-0 w-full z-50 bg-[#000B1A]/95 backdrop-blur-lg border-b border-white/10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-8 h-20 flex items-center justify-between">
+      
+      <!-- Marca BIA (Identidade Refinada: Base Integrada de Aplicações + Toque Afetivo) -->
+      <a href="#" class="flex items-center gap-3.5 group">
+        <div class="w-11 h-11 rounded-2xl bg-gradient-to-br from-[#001438] via-[#091133] to-[#1a0c2e] border border-white/10 p-2 flex items-center justify-center text-white shadow-lg shadow-[#004FFC]/20 group-hover:border-[#8B5CF6]/50 group-hover:shadow-[#8B5CF6]/30 transition-all duration-300">
+          <svg width="26" height="26" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-6 h-6">
+            <defs>
+              <linearGradient id="biaSoulGrad" x1="2" y1="2" x2="26" y2="26" gradientUnits="userSpaceOnUse">
+                <stop offset="0%" stop-color="#00D2FF" />
+                <stop offset="42%" stop-color="#0052FF" />
+                <stop offset="78%" stop-color="#8B5CF6" />
+                <stop offset="100%" stop-color="#F472B6" />
+              </linearGradient>
+            </defs>
+            <!-- Mastro e Curvas Harmônicas do B -->
+            <path d="M7 5H14C16.8 5 19 7.2 19 10C19 12.1 17.6 13.8 15.6 14.5C18.2 15.1 20 17.2 20 20C20 23 17.5 25 14.5 25H7V5Z" stroke="url(#biaSoulGrad)" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M7 14.5H15" stroke="url(#biaSoulGrad)" stroke-width="2.3" stroke-linecap="round"/>
+            
+            <!-- Faísca de Luz / Sparkle Afetivo no encontro das curvas -->
+            <path d="M15 14.5C16.2 14.5 17 13.7 17 12.5C17 13.7 17.8 14.5 19 14.5C17.8 14.5 17 15.3 17 16.5C17 15.3 16.2 14.5 15 14.5Z" fill="#F472B6" />
+            <circle cx="17" cy="14.5" r="0.8" fill="#FFFFFF" />
+            
+            <!-- Ponto de luz superior -->
+            <circle cx="14" cy="9.8" r="1.1" fill="#00D2FF" />
+          </svg>
+        </div>
+        <div class="flex flex-col">
+          <div class="flex items-center gap-1">
+            <span class="font-display font-black text-2xl tracking-tight text-white leading-none">BIA</span>
+            <span class="w-2 h-2 rounded-full bg-gradient-to-tr from-[#004FFC] to-[#F472B6] -mt-1.5 shadow-sm shadow-[#F472B6]/50"></span>
+          </div>
+          <span class="text-[8.5px] font-mono text-[#8E9FB8] tracking-[0.16em] uppercase mt-1">Base Integrada de Aplicações</span>
+        </div>
+      </a>
+
+      <!-- Menu Central Desktop -->
+      <nav class="hidden lg:flex items-center gap-8 text-sm font-semibold text-[#8E9FB8]">
+        <a href="#vitrine-3d" class="hover:text-white transition-colors flex items-center gap-1.5">
+          <span class="w-1.5 h-1.5 rounded-full bg-[#00D2FF]"></span>
+          Vitrine 3D
+        </a>
+        <a href="#solucoes-claras" class="hover:text-white transition-colors">Para Quem É</a>
+        <a href="#casos-reais" class="hover:text-white transition-colors">Casos Reais</a>
+        <a href="#como-funciona" class="hover:text-white transition-colors">Como Trabalhamos</a>
+        <a href="#briefing" class="hover:text-[#004FFC] transition-colors flex items-center gap-1.5">
+          <span class="w-1.5 h-1.5 rounded-full bg-[#004FFC] animate-pulse"></span>
+          Enviar Briefing
+        </a>
+      </nav>
+
+      <!-- Botão Header Sasico -->
+      <div class="hidden sm:flex items-center gap-4">
+        <a href="#briefing" class="btn-sasico-primary">
+          <span class="text-xs uppercase tracking-wider">Solicitar Solução</span>
+          <div class="arrow-circle">
+            <i data-lucide="arrow-right" class="w-4 h-4 text-[#004FFC]"></i>
+          </div>
+        </a>
+      </div>
+
+      <!-- Hambúrguer Mobile -->
+      <button onclick="toggleMobileMenu()" class="lg:hidden p-2 rounded-xl bg-white/5 border border-white/10 text-white" aria-label="Abrir Menu">
+        <i data-lucide="menu" class="w-6 h-6"></i>
+      </button>
+
+    </div>
+
+    <!-- Dropdown Mobile -->
+    <div id="mobile-menu" class="hidden lg:hidden w-full bg-[#001028] border-b border-white/10 px-6 py-6 space-y-4">
+      <nav class="flex flex-col space-y-3 text-sm font-semibold text-[#8E9FB8]">
+        <a href="#vitrine-3d" onclick="toggleMobileMenu()" class="hover:text-white py-1 text-[#00D2FF]">Vitrine 3D</a>
+        <a href="#solucoes-claras" onclick="toggleMobileMenu()" class="hover:text-white py-1">Para Quem É</a>
+        <a href="#casos-reais" onclick="toggleMobileMenu()" class="hover:text-white py-1">Casos Reais</a>
+        <a href="#como-funciona" onclick="toggleMobileMenu()" class="hover:text-white py-1">Como Trabalhamos</a>
+        <a href="#briefing" onclick="toggleMobileMenu()" class="text-[#004FFC] font-bold py-1">Enviar Briefing</a>
+      </nav>
+      <div class="pt-2">
+        <a href="#briefing" onclick="toggleMobileMenu()" class="btn-sasico-primary w-full justify-center">
+          <span class="text-xs uppercase tracking-wider">Solicitar Solução</span>
+          <div class="arrow-circle">
+            <i data-lucide="arrow-right" class="w-4 h-4 text-[#004FFC]"></i>
+          </div>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ========================================================================= -->
+  <!-- 2. HERO SECTION: LARGURA 100% DE PONTA A PONTA (ZERO BORDAS BRANCAS)      -->
+  <!-- ========================================================================= -->
+  <section class="w-full sasico-hero-bg pt-36 pb-20 sm:pt-48 sm:pb-32 px-4 sm:px-8 border-b border-white/10">
+    <div class="max-w-7xl mx-auto">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+        
+        <!-- Texto Principal e Filosofia Comercial -->
+        <div class="lg:col-span-7 text-center lg:text-left space-y-6">
+          
+          <div class="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-[#004FFC]/10 border border-[#004FFC]/30 text-xs font-mono font-semibold text-[#6698FF]">
+            <span class="w-2 h-2 rounded-full bg-[#004FFC] animate-ping"></span>
+            <span>SOLUÇÕES SOB MEDIDA &bull; PREÇO QUE CABE NO SEU BOLSO</span>
+          </div>
+
+          <h1 class="text-3xl sm:text-5xl lg:text-6xl font-display font-extrabold text-white tracking-tight leading-[1.12]">
+            Não somos super nada, <br class="hidden sm:block" />
+            mas iremos <span class="text-sasico-gradient">resolver o seu problema.</span>
+          </h1>
+
+          <p class="text-base sm:text-lg text-[#8E9FB8] max-w-2xl leading-relaxed font-normal mx-auto lg:mx-0">
+            Você não precisa de um aplicativo milionário ou de um sistema inchado para resolver uma dor real na sua empresa. Criamos aplicativos, portais e automações pontuais para <strong>consultórios, advocacias e assessorias</strong> por um preço justo e sem pegadinhas.
+          </p>
+
+          <!-- Botões -->
+          <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2">
+            <a href="#briefing" class="btn-sasico-primary w-full sm:w-auto justify-center">
+              <span>Conte seu Problema</span>
+              <div class="arrow-circle">
+                <i data-lucide="arrow-right" class="w-4 h-4 text-[#004FFC]"></i>
+              </div>
+            </a>
+            <a href="#solucoes-claras" class="btn-sasico-secondary w-full sm:w-auto justify-center">
+              <i data-lucide="arrow-down" class="w-4 h-4 text-[#6698FF]"></i>
+              <span>Ver Nossos Serviços</span>
+            </a>
+          </div>
+
+          <!-- Indicadores -->
+          <div class="pt-8 grid grid-cols-3 gap-4 border-t border-white/10 max-w-lg mx-auto lg:mx-0 text-left">
+            <div>
+              <div class="font-display font-extrabold text-xl sm:text-2xl text-white">Zero</div>
+              <div class="text-[11px] font-mono text-[#8E9FB8] uppercase">Pegadinhas ou taxas ocultas</div>
+            </div>
+            <div>
+              <div class="font-display font-extrabold text-xl sm:text-2xl text-[#004FFC]">Entrada</div>
+              <div class="text-[11px] font-mono text-[#8E9FB8] uppercase">Singela e facilitada</div>
+            </div>
+            <div>
+              <div class="font-display font-extrabold text-xl sm:text-2xl text-emerald-400">Direto</div>
+              <div class="text-[11px] font-mono text-[#8E9FB8] uppercase">Com quem desenvolve</div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Mockup Gráfico da Solução -->
+        <div class="lg:col-span-5 flex justify-center relative">
+          <div class="absolute -inset-4 bg-gradient-to-tr from-[#004FFC]/20 to-[#6698FF]/10 rounded-3xl blur-2xl -z-10"></div>
+
+          <div class="mockup-window w-full max-w-md p-6 space-y-5 select-none">
+            <div class="flex items-center justify-between border-b border-white/10 pb-4">
+              <div class="flex items-center gap-2">
+                <span class="w-3 h-3 rounded-full bg-rose-500/80"></span>
+                <span class="w-3 h-3 rounded-full bg-amber-500/80"></span>
+                <span class="w-3 h-3 rounded-full bg-emerald-500/80"></span>
+              </div>
+              <div class="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-[10px] font-mono text-[#8E9FB8] flex items-center gap-1.5">
+                <i data-lucide="shield-check" class="w-3 h-3 text-[#004FFC]"></i>
+                <span>painel-resolvido.app</span>
+              </div>
+            </div>
+
+            <div class="p-4 rounded-xl bg-[#001028] border border-[#004FFC]/30 space-y-3">
+              <div class="flex justify-between items-center text-xs">
+                <span class="text-[#6698FF] font-mono font-bold">PROBLEMA IDENTIFICADO</span>
+                <span class="px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-400 text-[10px] font-bold">RESOLVIDO</span>
+              </div>
+              <div class="text-sm font-bold text-white leading-snug">
+                "Meus clientes me chamavam o dia todo para pedir status de documentos e processos."
+              </div>
+              <div class="p-3 rounded-lg bg-black/40 border border-white/5 text-xs text-[#8E9FB8] space-y-1 font-mono">
+                <div class="text-emerald-400 font-bold">✓ Solução Criada em 7 Dias:</div>
+                <div>Portal do cliente seguro com login simplificado e download de laudos/certidões em PDF.</div>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-2 gap-3 text-center">
+              <div class="p-3 rounded-xl bg-white/5 border border-white/5">
+                <span class="text-[10px] font-mono text-[#8E9FB8] uppercase">Tempo Poupado</span>
+                <div class="text-xl font-display font-bold text-white mt-0.5">-80% no Whats</div>
+              </div>
+              <div class="p-3 rounded-xl bg-white/5 border border-white/5">
+                <span class="text-[10px] font-mono text-[#8E9FB8] uppercase">Custo da Solução</span>
+                <div class="text-xl font-display font-bold text-emerald-400 mt-0.5">Preço Justo</div>
+              </div>
+            </div>
+
+            <div class="p-3 rounded-xl bg-[#001D45] border border-[#004FFC]/40 flex items-center gap-3 shadow-lg">
+              <div class="w-8 h-8 rounded-lg bg-[#004FFC] flex items-center justify-center text-white shrink-0">
+                <i data-lucide="check" class="w-4 h-4"></i>
+              </div>
+              <div class="text-xs">
+                <span class="text-white font-bold block">Briefing Entregue & Aprovado</span>
+                <span class="text-[#8E9FB8] text-[10px] font-mono">Entrada singela liberada</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================= -->
+  <!-- 2.5 VITRINE 3D TECNOLÓGICA: SHOWROOM MULTIPLATAFORMA                      -->
+  <!-- ========================================================================= -->
+  <section id="vitrine-3d" class="w-full showroom-stage-bg py-20 lg:py-28 px-4 sm:px-8 border-b border-slate-200 relative overflow-hidden">
+    <!-- Grid de fundo suave -->
+    <div class="absolute inset-0 bg-[linear-gradient(to_right,rgba(0,79,252,0.03)_1px,transparent_1px),linear-gradient(to_bottom,rgba(0,79,252,0.03)_1px,transparent_1px)] bg-[size:44px_44px] pointer-events-none"></div>
+
+    <div class="max-w-7xl mx-auto space-y-12 relative z-10">
+      
+      <!-- Cabeçalho da Vitrine -->
+      <div class="text-center max-w-3xl mx-auto space-y-4">
+        <div>
+          <span class="pill-sasico-light">Vitrine Tecnológica BIA &bull; Showroom 3D Multiplataforma</span>
+        </div>
+
+        <h2 class="text-3xl sm:text-5xl font-display font-extrabold text-[#021B42] tracking-tight leading-tight">
+          Aplicações modernas desenhadas <br class="hidden sm:block" />
+          para qualquer tela e dispositivo
+        </h2>
+
+        <p class="text-[#64748B] text-base sm:text-lg leading-relaxed max-w-2xl mx-auto font-normal">
+          Do smartphone da recepção ao painel executivo do gestor: construímos softwares sob medida com ergonomia visual impecável, gráficos em tempo real e facilidade de uso para toda a sua equipe.
+        </p>
+      </div>
+
+      <!-- Palco 3D dos Dispositivos -->
+      <div class="relative max-w-6xl mx-auto pt-4 pb-6">
+        
+        <!-- Iluminação de Estúdio Radial -->
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-4/5 h-4/5 bg-gradient-to-tr from-[#004FFC]/10 via-[#00D2FF]/5 to-transparent rounded-full blur-3xl pointer-events-none"></div>
+
+        <!-- Composição 3D Flutuante dos 4 Dispositivos -->
+        <div class="animate-float-showroom relative mx-auto text-center">
+          <picture>
+            <source media="(max-width: 767px)" srcset="assets/mockup-3d-mobile.webp" type="image/webp">
+            <source media="(min-width: 768px)" srcset="assets/mockup-3d-showcase.webp" type="image/webp">
+            <img 
+              src="assets/mockup-3d-showcase.webp" 
+              alt="Vitrine 3D BIA — Notebook, Smartphone, Desktop e Tablet" 
+              class="w-full max-w-5xl mx-auto mix-blend-multiply drop-shadow-[0_30px_40px_rgba(0,18,66,0.14)] select-none pointer-events-none transition-transform duration-700 hover:scale-[1.01]"
+              loading="lazy"
+            />
+          </picture>
+        </div>
+
+        <!-- Badges Flutuantes em Profundidade 3D (Desktop e Tablet) -->
+        <div class="hidden md:block pointer-events-auto">
+          
+          <!-- Badge 1: Notebook Protagonista (Superior Esquerdo) -->
+          <div class="absolute top-8 left-0 lg:left-6 animate-float-badge-left max-w-xs showroom-floating-card p-3.5">
+            <div class="flex items-start gap-3">
+              <div class="w-8 h-8 rounded-lg bg-[#004FFC]/10 text-[#004FFC] flex items-center justify-center shrink-0 mt-0.5">
+                <i data-lucide="laptop" class="w-4 h-4"></i>
+              </div>
+              <div class="text-left">
+                <span class="text-[10px] font-mono font-bold uppercase tracking-wider text-[#004FFC] block">Notebook &bull; Protagonista</span>
+                <h4 class="text-xs font-bold text-[#021B42] leading-snug">Painel Web & Gestão Central</h4>
+                <p class="text-[11px] text-[#64748B] leading-tight mt-0.5">Processos, faturamento e prontuários em tela ampla.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Badge 2: Smartphone Primeiro Plano (Inferior Esquerdo) -->
+          <div class="absolute bottom-6 left-2 lg:left-8 animate-float-badge-right max-w-xs showroom-floating-card p-3.5">
+            <div class="flex items-start gap-3">
+              <div class="w-8 h-8 rounded-lg bg-emerald-500/10 text-emerald-600 flex items-center justify-center shrink-0 mt-0.5">
+                <i data-lucide="smartphone" class="w-4 h-4"></i>
+              </div>
+              <div class="text-left">
+                <span class="text-[10px] font-mono font-bold uppercase tracking-wider text-emerald-600 block">Smartphone &bull; 1º Plano</span>
+                <h4 class="text-xs font-bold text-[#021B42] leading-snug">App Mobile & WhatsApp</h4>
+                <p class="text-[11px] text-[#64748B] leading-tight mt-0.5">Notificações em tempo real e pagamentos via PIX.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Badge 3: Desktop Complementar (Superior Direito) -->
+          <div class="absolute top-12 right-0 lg:right-6 animate-float-badge-right max-w-xs showroom-floating-card p-3.5">
+            <div class="flex items-start gap-3">
+              <div class="w-8 h-8 rounded-lg bg-purple-500/10 text-purple-600 flex items-center justify-center shrink-0 mt-0.5">
+                <i data-lucide="monitor" class="w-4 h-4"></i>
+              </div>
+              <div class="text-left">
+                <span class="text-[10px] font-mono font-bold uppercase tracking-wider text-purple-600 block">Desktop &bull; Complementar</span>
+                <h4 class="text-xs font-bold text-[#021B42] leading-snug">Dashboard Operacional</h4>
+                <p class="text-[11px] text-[#64748B] leading-tight mt-0.5">Métricas de produtividade e análise contínua.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Badge 4: Tablet de Equilíbrio (Inferior Direito) -->
+          <div class="absolute bottom-8 right-2 lg:right-8 animate-float-badge-left max-w-xs showroom-floating-card p-3.5">
+            <div class="flex items-start gap-3">
+              <div class="w-8 h-8 rounded-lg bg-amber-500/10 text-amber-600 flex items-center justify-center shrink-0 mt-0.5">
+                <i data-lucide="tablet" class="w-4 h-4"></i>
+              </div>
+              <div class="text-left">
+                <span class="text-[10px] font-mono font-bold uppercase tracking-wider text-amber-600 block">Tablet &bull; Equilíbrio</span>
+                <h4 class="text-xs font-bold text-[#021B42] leading-snug">Triagem & Atendimento</h4>
+                <p class="text-[11px] text-[#64748B] leading-tight mt-0.5">Fichas digitais e assinatura na tela em qualquer sala.</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- Barra de 4 Pilares de Excelência Tecnológica -->
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 max-w-5xl mx-auto pt-2">
+        
+        <div class="p-4 rounded-2xl bg-white border border-slate-200/80 shadow-sm flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-[#004FFC]/10 text-[#004FFC] flex items-center justify-center shrink-0">
+            <i data-lucide="layers" class="w-5 h-5"></i>
+          </div>
+          <div class="text-left">
+            <h5 class="text-xs font-bold text-[#021B42]">100% Responsivo</h5>
+            <p class="text-[11px] text-[#64748B]">Do celular à tela ultra-wide</p>
+          </div>
+        </div>
+
+        <div class="p-4 rounded-2xl bg-white border border-slate-200/80 shadow-sm flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-emerald-500/10 text-emerald-600 flex items-center justify-center shrink-0">
+            <i data-lucide="zap" class="w-5 h-5"></i>
+          </div>
+          <div class="text-left">
+            <h5 class="text-xs font-bold text-[#021B42]">Alta Performance</h5>
+            <p class="text-[11px] text-[#64748B]">Carregamento rápido WebP</p>
+          </div>
+        </div>
+
+        <div class="p-4 rounded-2xl bg-white border border-slate-200/80 shadow-sm flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-purple-500/10 text-purple-600 flex items-center justify-center shrink-0">
+            <i data-lucide="shield-check" class="w-5 h-5"></i>
+          </div>
+          <div class="text-left">
+            <h5 class="text-xs font-bold text-[#021B42]">Acesso Seguro</h5>
+            <p class="text-[11px] text-[#64748B]">Proteção de dados e LGPD</p>
+          </div>
+        </div>
+
+        <div class="p-4 rounded-2xl bg-white border border-slate-200/80 shadow-sm flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-amber-500/10 text-amber-600 flex items-center justify-center shrink-0">
+            <i data-lucide="mouse-pointer-click" class="w-5 h-5"></i>
+          </div>
+          <div class="text-left">
+            <h5 class="text-xs font-bold text-[#021B42]">Fácil de Usar</h5>
+            <p class="text-[11px] text-[#64748B]">Sem treinamentos longos</p>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================================================================= -->
+  <!-- 3. FAIXA CLARA 1: BRANCO PURO (100% DE PONTA A PONTA)                     -->
+  <!-- ========================================================================= -->
+  <section id="solucoes-claras" class="w-full bg-white text-[#021B42] py-24 px-4 sm:px-8 border-b border-slate-200">
+    <div class="max-w-7xl mx-auto space-y-16">
+      
+      <!-- Topo: Pílula + Título Dark + Subtítulo -->
+      <div class="text-center max-w-3xl mx-auto space-y-4">
+        <div>
+          <span class="pill-sasico-light">Aprimore cada processo da sua empresa</span>
+        </div>
+
+        <h2 class="text-3xl sm:text-5xl font-display font-extrabold text-[#021B42] tracking-tight leading-tight">
+          Soluções sob medida: <br class="hidden sm:block" />
+          descubra o lado simples da tecnologia
+        </h2>
+
+        <p class="text-[#64748B] text-base leading-relaxed max-w-2xl mx-auto font-normal">
+          Nosso desenvolvimento é focado em resolver problemas pontuais de forma natural, eficiente e sem criar complexidades desnecessárias para a sua rotina.
+        </p>
+      </div>
+
+      <!-- TRIO DE CARDS BRANCOS -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        
+        <div class="sasico-white-card p-8 space-y-5">
+          <div class="w-14 h-14 rounded-2xl bg-[#EDF4FF] flex items-center justify-center text-[#004FFC]">
+            <i data-lucide="stethoscope" class="w-7 h-7"></i>
+          </div>
+          <h3 class="text-xl font-bold font-display text-[#021B42]">
+            Consultórios & Clínicas
+          </h3>
+          <p class="text-[#64748B] text-sm leading-relaxed">
+            Elimine faltas de pacientes com confirmação automática de consultas direto pelo WhatsApp, prontuário ágil e envio de receitas com QR Code.
+          </p>
+          <div class="pt-2">
+            <span class="text-xs font-bold text-[#004FFC] flex items-center gap-1">
+              Soluções a partir de R$ 890 ➔
+            </span>
+          </div>
+        </div>
+
+        <div class="sasico-white-card p-8 space-y-5">
+          <div class="w-14 h-14 rounded-2xl bg-[#EDF4FF] flex items-center justify-center text-[#004FFC]">
+            <i data-lucide="scale" class="w-7 h-7"></i>
+          </div>
+          <h3 class="text-xl font-bold font-display text-[#021B42]">
+            Escritórios de Advocacia
+          </h3>
+          <p class="text-[#64748B] text-sm leading-relaxed">
+            Portal exclusivo para seus clientes consultarem o andamento dos processos sem precisar mandar mensagem no seu WhatsApp particular o tempo todo.
+          </p>
+          <div class="pt-2">
+            <span class="text-xs font-bold text-[#004FFC] flex items-center gap-1">
+              Portal do cliente rápido ➔
+            </span>
+          </div>
+        </div>
+
+        <div class="sasico-white-card p-8 space-y-5">
+          <div class="w-14 h-14 rounded-2xl bg-[#EDF4FF] flex items-center justify-center text-[#004FFC]">
+            <i data-lucide="briefcase" class="w-7 h-7"></i>
+          </div>
+          <h3 class="text-xl font-bold font-display text-[#021B42]">
+            Assessorias & Prestadores
+          </h3>
+          <p class="text-[#64748B] text-sm leading-relaxed">
+            Geração de laudos e certidões automáticas em PDF, ordens de serviço com assinatura digital na tela e cobrança PIX com baixa instantânea.
+          </p>
+          <div class="pt-2">
+            <span class="text-xs font-bold text-[#004FFC] flex items-center gap-1">
+              Automações práticas ➔
+            </span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- DUPLA DE CARDS DE DESTAQUE -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 pt-4">
+        
+        <div class="lg:col-span-5 rounded-3xl bg-gradient-to-br from-[#004FFC] via-[#003ECC] to-[#0A266B] p-8 text-white relative overflow-hidden flex flex-col justify-between min-h-[380px] shadow-xl">
+          <div class="space-y-2 z-10">
+            <span class="px-3 py-1 rounded-full bg-white/20 text-white text-xs font-mono font-bold uppercase">
+              EXPERIÊNCIA MÓVEL
+            </span>
+            <h3 class="text-2xl sm:text-3xl font-display font-extrabold leading-tight">
+              Tudo funciona no celular do seu cliente.
+            </h3>
+            <p class="text-blue-100 text-xs sm:text-sm">
+              Sem precisar instalar nada pesado. Leve, rápido e acessível em qualquer smartphone.
+            </p>
+          </div>
+
+          <div class="mt-6 -mb-10 mx-auto w-64 bg-[#010915] rounded-t-3xl border-4 border-white/20 p-3 shadow-2xl z-10">
+            <div class="w-16 h-3 bg-white/30 rounded-full mx-auto mb-3"></div>
+            <div class="bg-white rounded-xl p-3 text-[#021B42] text-[11px] space-y-2 shadow">
+              <div class="font-bold flex items-center justify-between">
+                <span>Consulta Agendada</span>
+                <span class="text-emerald-600 font-bold">Confirmada</span>
+              </div>
+              <div class="text-[10px] text-slate-500">Dr. Roberto &bull; 14:30h</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="lg:col-span-7 sasico-white-card p-8 sm:p-12 flex flex-col justify-between space-y-6">
+          <div class="space-y-4">
+            <div>
+              <span class="pill-sasico-light">Por que as pessoas nos escolhem?</span>
+            </div>
+            <h3 class="text-2xl sm:text-4xl font-display font-extrabold text-[#021B42] leading-tight">
+              A escolha mais honesta e inteligente para o seu negócio.
+            </h3>
+            <p class="text-[#64748B] text-sm leading-relaxed">
+              Grandes agências cobram fortunas para criar sistemas cheios de burocracia que você não precisa. Nós construímos a ferramenta certa para a sua necessidade, com conversa direta e preço que cabe no seu bolso.
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+            <div class="flex items-center gap-3">
+              <div class="w-6 h-6 rounded-full bg-[#EDF4FF] text-[#004FFC] flex items-center justify-center shrink-0">
+                <i data-lucide="check" class="w-4 h-4"></i>
+              </div>
+              <span class="text-xs font-bold text-[#021B42]">Preço claro desde o primeiro dia</span>
+            </div>
+            <div class="flex items-center gap-3">
+              <div class="w-6 h-6 rounded-full bg-[#EDF4FF] text-[#004FFC] flex items-center justify-center shrink-0">
+                <i data-lucide="check" class="w-4 h-4"></i>
+              </div>
+              <span class="text-xs font-bold text-[#021B42]">Entrada singela e facilitada</span>
+            </div>
+            <div class="flex items-center gap-3">
+              <div class="w-6 h-6 rounded-full bg-[#EDF4FF] text-[#004FFC] flex items-center justify-center shrink-0">
+                <i data-lucide="check" class="w-4 h-4"></i>
+              </div>
+              <span class="text-xs font-bold text-[#021B42]">Entrega rápida e sem enrolação</span>
+            </div>
+            <div class="flex items-center gap-3">
+              <div class="w-6 h-6 rounded-full bg-[#EDF4FF] text-[#004FFC] flex items-center justify-center shrink-0">
+                <i data-lucide="check" class="w-4 h-4"></i>
+              </div>
+              <span class="text-xs font-bold text-[#021B42]">Sem pegadinhas ou contratos presos</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================================================================= -->
+  <!-- 4. FAIXA CLARA 2: AZUL GELO SASICO (#EDF2FF) (100% DE PONTA A PONTA)      -->
+  <!-- ========================================================================= -->
+  <section id="casos-reais" class="w-full sasico-ice-bg py-24 px-4 sm:px-8 border-b border-blue-200/60">
+    <div class="max-w-7xl mx-auto space-y-14">
+      
+      <!-- Topo da Seção de Casos -->
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-6">
+        <div>
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white border border-blue-200 text-xs font-mono font-bold text-[#004FFC] mb-3 shadow-sm">
+            <i data-lucide="check-circle" class="w-3.5 h-3.5"></i>
+            CASOS REAIS EM PRODUÇÃO
+          </div>
+          <h2 class="text-3xl sm:text-5xl font-display font-extrabold text-[#021B42] tracking-tight">
+            Sistemas e apps desenvolvidos
+          </h2>
+          <p class="text-[#475569] text-sm mt-2 max-w-xl">
+            Soluções que já estão funcionando no dia a dia de empresas, resolvendo problemas de verdade.
+          </p>
+        </div>
+
+        <div class="text-xs text-[#004FFC] font-mono font-semibold flex items-center gap-1">
+          <span>Clique para ver como resolvemos cada caso</span>
+          <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+        </div>
+      </div>
+
+      <!-- Grid com os 6 Cards com IDENTIDADES VISUAIS ESPECÍFICAS DE CADA NICHO -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7">
+        
+        <!-- Case 1: NexuSupport (Help Desk & TI) -->
+        <div class="sasico-white-card p-6 flex flex-col justify-between group cursor-pointer" onclick="abrirDetalhe('helpdesk')">
+          <div>
+            <!-- Palco 3D do Smartphone com Perspectiva e Sombra Real (Proporção Flagship 19.5:9) -->
+            <div class="phone-3d-stage w-full h-[360px] bg-gradient-to-b from-slate-100/90 via-white to-slate-50/50 rounded-2xl border border-slate-200/80 mb-5 relative overflow-hidden flex items-center justify-center p-4 group-hover:border-[#004FFC]/40 group-hover:shadow-md transition-all">
+              <!-- Sombra de Contato 3D no Chão -->
+              <div class="phone-3d-shadow"></div>
+              
+              <!-- Aparelho 3D com Perspectiva Isométrica e Chassi Volumétrico -->
+              <div class="phone-3d-device w-[155px] h-[310px] bg-[#020617] rounded-[30px] border-[3.5px] border-[#1E293B] relative flex flex-col overflow-hidden">
+                <!-- Reflexo de Vidro em Diagonal -->
+                <div class="phone-glare"></div>
+                <!-- Status Bar Topo com Dynamic Island -->
+                <div class="pt-1.5 px-3 flex items-center justify-between text-[7px] font-mono text-white/70 shrink-0 z-30">
+                  <span>09:41</span>
+                  <div class="w-10 h-2 bg-[#020617] rounded-full flex items-center justify-end px-1 border border-white/10">
+                    <div class="w-1 h-1 rounded-full bg-[#38bdf8]"></div>
+                  </div>
+                  <span>5G ▮</span>
+                </div>
+                <!-- Tela do App: NexuSupport -->
+                <div class="bg-[#0B132B] flex-1 px-2.5 py-2 text-white flex flex-col justify-between text-left font-sans relative z-20">
+                  <div class="space-y-2">
+                    <!-- Brand Bar -->
+                    <div class="flex items-center justify-between border-b border-cyan-500/20 pb-1.5">
+                      <div class="flex items-center gap-1.5">
+                        <div class="w-4 h-4 rounded bg-cyan-500 flex items-center justify-center text-[#0B132B] text-[8.5px] font-black">N</div>
+                        <span class="text-[9.5px] font-black tracking-tight text-cyan-400">NexuSupport</span>
+                      </div>
+                      <span class="text-[7.5px] font-mono text-emerald-400">● Téc. Lucas</span>
+                    </div>
+                    <!-- Ticket Card -->
+                    <div class="p-2 rounded-lg bg-[#111C44] border border-cyan-500/30 space-y-1 shadow-sm">
+                      <div class="flex items-center justify-between">
+                        <span class="px-1.5 py-0.5 rounded bg-rose-500/20 text-rose-300 text-[6.5px] font-bold">ALTA PRIORIDADE</span>
+                        <span class="text-[7.5px] font-mono text-slate-400">#1084</span>
+                      </div>
+                      <div class="text-[9.5px] font-bold text-white leading-tight">Falha Switch Central</div>
+                      <div class="text-[7.5px] text-cyan-200">Hospital Sta. Maria &bull; TI</div>
+                    </div>
+                    <!-- SLA Badge -->
+                    <div class="px-2 py-1 rounded bg-cyan-950/80 border border-cyan-500/40 text-[7px] text-cyan-300 flex items-center justify-between">
+                      <span>⏱️ SLA Resposta:</span>
+                      <span class="font-bold text-emerald-400">12 min rest.</span>
+                    </div>
+                    <!-- Status do Servidor -->
+                    <div class="p-1.5 rounded bg-[#070D1F] border border-slate-700/60 text-[7px] text-slate-300 space-y-0.5">
+                      <div class="flex justify-between">
+                        <span class="text-slate-400">Gateway:</span>
+                        <span class="text-emerald-400 font-mono font-bold">192.168.1.1 OK</span>
+                      </div>
+                      <div class="flex justify-between">
+                        <span class="text-slate-400">Portas Ativas:</span>
+                        <span class="text-cyan-300 font-mono">48/48 Online</span>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- Botão de Ação -->
+                  <div class="w-full py-1.5 rounded-lg bg-gradient-to-r from-cyan-600 to-blue-600 text-white text-[8px] font-bold text-center shadow-md">
+                    Atender Chamado Remoto
+                  </div>
+                </div>
+                <!-- Home Indicator Bar -->
+                <div class="w-12 h-1 bg-white/40 rounded-full mx-auto my-1 shrink-0 z-30"></div>
+              </div>
+            </div>
+
+            <!-- Dados do Card -->
+            <div class="flex items-center justify-between mb-2">
+              <span class="px-2.5 py-0.5 rounded-md bg-cyan-50 text-cyan-700 font-mono text-[10px] font-bold">NEXUSUPPORT &bull; TI</span>
+              <span class="px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-600 font-mono text-[10px] font-bold border border-emerald-200">● Ativo</span>
+            </div>
+            <h3 class="text-lg font-bold font-display text-[#021B42] mb-1.5 group-hover:text-[#004FFC] transition-colors">
+              NexuSupport — Central de Chamados Técnicos
+            </h3>
+            <p class="text-[#64748B] text-xs leading-relaxed mb-4">
+              Aplicativo de tickets para equipes de TI e suporte com fila de prioridades, controle rigoroso de SLA e envio automático de status no WhatsApp do cliente.
+            </p>
+          </div>
+          <div class="pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-mono text-[#64748B]">
+            <span>Flutter &bull; WebSockets &bull; FCM</span>
+            <span class="text-[#004FFC] font-bold flex items-center gap-1 group-hover:translate-x-1 transition-transform">Ver Detalhes ➔</span>
+          </div>
+        </div>
+
+        <!-- Case 2: SorrisoPrime (Odontologia) -->
+        <div class="sasico-white-card p-6 flex flex-col justify-between group cursor-pointer" onclick="abrirDetalhe('odonto')">
+          <div>
+            <!-- Palco 3D do Smartphone com Perspectiva e Sombra Real (Proporção Flagship 19.5:9) -->
+            <div class="phone-3d-stage w-full h-[360px] bg-gradient-to-b from-teal-50/70 via-white to-slate-50/50 rounded-2xl border border-teal-100 mb-5 relative overflow-hidden flex items-center justify-center p-4 group-hover:border-teal-500/40 group-hover:shadow-md transition-all">
+              <!-- Sombra de Contato 3D no Chão -->
+              <div class="phone-3d-shadow"></div>
+
+              <!-- Aparelho 3D com Perspectiva Isométrica e Chassi Volumétrico -->
+              <div class="phone-3d-device w-[155px] h-[310px] bg-[#020617] rounded-[30px] border-[3.5px] border-[#1E293B] relative flex flex-col overflow-hidden">
+                <!-- Reflexo de Vidro em Diagonal -->
+                <div class="phone-glare"></div>
+                <!-- Status Bar Topo com Dynamic Island -->
+                <div class="pt-1.5 px-3 flex items-center justify-between text-[7px] font-mono text-slate-600 shrink-0 z-30">
+                  <span>09:41</span>
+                  <div class="w-10 h-2 bg-[#020617] rounded-full flex items-center justify-end px-1">
+                    <div class="w-1 h-1 rounded-full bg-teal-400"></div>
+                  </div>
+                  <span>5G ▮</span>
+                </div>
+                <!-- Tela do App: SorrisoPrime -->
+                <div class="bg-[#F0FDFA] flex-1 px-2.5 py-2 text-slate-800 flex flex-col justify-between text-left font-sans relative z-20">
+                  <div class="space-y-2">
+                    <!-- Brand Bar -->
+                    <div class="flex items-center justify-between border-b border-teal-200 pb-1.5">
+                      <div class="flex items-center gap-1">
+                        <span class="text-[11px]">✨</span>
+                        <div class="flex flex-col">
+                          <span class="text-[9.5px] font-black tracking-tight text-[#0D9488] leading-none">SorrisoPrime</span>
+                          <span class="text-[6.5px] font-mono text-teal-600 uppercase">Odontologia</span>
+                        </div>
+                      </div>
+                      <span class="text-[7px] font-bold text-teal-800 bg-teal-100 px-1.5 py-0.5 rounded">Hoje</span>
+                    </div>
+                    <!-- Appointment Card -->
+                    <div class="p-2 rounded-lg bg-white border border-teal-100 shadow-sm space-y-1">
+                      <div class="flex items-center justify-between">
+                        <span class="text-[9.5px] font-bold text-slate-900 leading-tight">Mariana Costa</span>
+                        <span class="text-[8px] font-bold text-teal-700">15:30h</span>
+                      </div>
+                      <div class="text-[7.5px] text-slate-500">Clareamento a Laser + Profilaxia</div>
+                    </div>
+                    <!-- WhatsApp Confirmation Tag -->
+                    <div class="p-1.5 rounded-lg bg-emerald-50 border border-emerald-200 text-[7px] text-emerald-800 flex items-center gap-1.5">
+                      <span class="text-emerald-600 font-bold">✓ WhatsApp:</span>
+                      <span>Presença confirmada</span>
+                    </div>
+                    <!-- Odontograma Quick View -->
+                    <div class="p-1.5 rounded bg-white border border-teal-100/80 text-[7px] text-slate-600 space-y-0.5">
+                      <div class="flex justify-between font-mono">
+                        <span>Dente 14 &bull; Restauração:</span>
+                        <span class="text-teal-700 font-bold">Concluída</span>
+                      </div>
+                      <div class="flex justify-between font-mono">
+                        <span>Retorno sugerido:</span>
+                        <span class="text-slate-500">6 meses</span>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- Botão de Ação -->
+                  <div class="w-full py-1.5 rounded-lg bg-[#0D9488] text-white text-[8px] font-bold text-center shadow-md">
+                    Odontograma & Ficha
+                  </div>
+                </div>
+                <!-- Home Indicator Bar -->
+                <div class="w-12 h-1 bg-slate-400/50 rounded-full mx-auto my-1 shrink-0 z-30"></div>
+              </div>
+            </div>
+
+            <!-- Dados do Card -->
+            <div class="flex items-center justify-between mb-2">
+              <span class="px-2.5 py-0.5 rounded-md bg-teal-50 text-teal-800 font-mono text-[10px] font-bold">SORRISOPRIME &bull; ODONTO</span>
+              <span class="px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-600 font-mono text-[10px] font-bold border border-emerald-200">● Ativo</span>
+            </div>
+            <h3 class="text-lg font-bold font-display text-[#021B42] mb-1.5 group-hover:text-[#004FFC] transition-colors">
+              SorrisoPrime — Gestão Clínica & Retornos
+            </h3>
+            <p class="text-[#64748B] text-xs leading-relaxed mb-4">
+              Sistema odontológico móvel com confirmação automática de consultas pelo WhatsApp, disparo de retornos periódicos e redução drástica de faltas.
+            </p>
+          </div>
+          <div class="pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-mono text-[#64748B]">
+            <span>WhatsApp API &bull; Calendário &bull; PWA</span>
+            <span class="text-[#004FFC] font-bold flex items-center gap-1 group-hover:translate-x-1 transition-transform">Ver Detalhes ➔</span>
+          </div>
+        </div>
+
+        <!-- Case 3: Albuquerque & Prado (Advocacia) -->
+        <div class="sasico-white-card p-6 flex flex-col justify-between group cursor-pointer" onclick="abrirDetalhe('advocacia')">
+          <div>
+            <!-- Palco 3D do Smartphone com Perspectiva e Sombra Real (Proporção Flagship 19.5:9) -->
+            <div class="phone-3d-stage w-full h-[360px] bg-gradient-to-b from-amber-50/50 via-white to-slate-50/50 rounded-2xl border border-amber-900/20 mb-5 relative overflow-hidden flex items-center justify-center p-4 group-hover:border-amber-400/50 group-hover:shadow-md transition-all">
+              <!-- Sombra de Contato 3D no Chão -->
+              <div class="phone-3d-shadow"></div>
+
+              <!-- Aparelho 3D com Perspectiva Isométrica e Chassi Volumétrico -->
+              <div class="phone-3d-device w-[155px] h-[310px] bg-[#020617] rounded-[30px] border-[3.5px] border-[#1E293B] relative flex flex-col overflow-hidden">
+                <!-- Reflexo de Vidro em Diagonal -->
+                <div class="phone-glare"></div>
+                <!-- Status Bar Topo com Dynamic Island -->
+                <div class="pt-1.5 px-3 flex items-center justify-between text-[7px] font-mono text-white/70 shrink-0 z-30">
+                  <span>09:41</span>
+                  <div class="w-10 h-2 bg-[#020617] rounded-full flex items-center justify-end px-1 border border-white/10">
+                    <div class="w-1 h-1 rounded-full bg-amber-400"></div>
+                  </div>
+                  <span>5G ▮</span>
+                </div>
+                <!-- Tela do App: Albuquerque & Prado -->
+                <div class="bg-[#0A0F1D] flex-1 px-2.5 py-2 text-white flex flex-col justify-between text-left font-serif relative z-20">
+                  <div class="space-y-2">
+                    <!-- Brand Bar -->
+                    <div class="flex items-center justify-between border-b border-amber-500/30 pb-1.5">
+                      <div class="flex items-center gap-1 font-serif">
+                        <span class="text-[#D4AF37] text-[11px]">⚖️</span>
+                        <div class="flex flex-col">
+                          <span class="text-[8.5px] font-bold tracking-wider text-[#FDE047] leading-none">ALBUQUERQUE & PRADO</span>
+                          <span class="text-[5.5px] font-mono text-amber-200/70 tracking-widest uppercase">ADVOGADOS ASSOCIADOS</span>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- Legal Process Card -->
+                    <div class="p-2 rounded-lg bg-[#141B33] border border-amber-500/30 space-y-1 font-sans shadow-sm">
+                      <div class="flex items-center justify-between">
+                        <span class="text-[7.5px] font-mono text-amber-300">TJSP &bull; 00421-2026</span>
+                        <span class="px-1 py-0.5 rounded bg-emerald-500/20 text-emerald-300 text-[6.5px] font-bold">PROCEDENTE</span>
+                      </div>
+                      <div class="text-[9px] font-bold text-white leading-tight">Sentença Favorável Publicada</div>
+                      <div class="text-[7px] text-slate-300">Construtora Horizonte S/A</div>
+                    </div>
+                    <!-- Document Download Tag -->
+                    <div class="p-1.5 rounded bg-amber-950/50 border border-amber-500/30 text-[7px] text-amber-200 font-sans flex items-center justify-between">
+                      <span>📄 Petição & Decisão Oficial</span>
+                      <span class="text-amber-400 font-bold">PDF (1.2MB)</span>
+                    </div>
+                    <!-- Próximo Prazo -->
+                    <div class="p-1.5 rounded bg-[#0f172a] border border-slate-800 text-[7px] font-sans text-slate-300 flex items-center justify-between">
+                      <span class="text-slate-400">Prazo Recursal:</span>
+                      <span class="text-emerald-400 font-bold">15 dias úteis</span>
+                    </div>
+                  </div>
+                  <!-- Botão de Ação -->
+                  <div class="w-full py-1.5 rounded-lg bg-gradient-to-r from-[#D97706] to-[#B45309] text-white text-[8px] font-sans font-bold text-center shadow-md">
+                    Consultar Autos do Processo
+                  </div>
+                </div>
+                <!-- Home Indicator Bar -->
+                <div class="w-12 h-1 bg-white/40 rounded-full mx-auto my-1 shrink-0 z-30"></div>
+              </div>
+            </div>
+
+            <!-- Dados do Card -->
+            <div class="flex items-center justify-between mb-2">
+              <span class="px-2.5 py-0.5 rounded-md bg-amber-50 text-amber-800 font-mono text-[10px] font-bold">ALBUQUERQUE & PRADO</span>
+              <span class="px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-600 font-mono text-[10px] font-bold border border-emerald-200">● Ativo</span>
+            </div>
+            <h3 class="text-lg font-bold font-display text-[#021B42] mb-1.5 group-hover:text-[#004FFC] transition-colors">
+              Albuquerque & Prado — Portal Jurídico
+            </h3>
+            <p class="text-[#64748B] text-xs leading-relaxed mb-4">
+              Portal mobile exclusivo para clientes do escritório acompanharem andamentos processuais, publicações e certidões com login simplificado e zero ligações de rotina.
+            </p>
+          </div>
+          <div class="pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-mono text-[#64748B]">
+            <span>Next.js &bull; PDF Engine &bull; LGPD</span>
+            <span class="text-[#004FFC] font-bold flex items-center gap-1 group-hover:translate-x-1 transition-transform">Ver Detalhes ➔</span>
+          </div>
+        </div>
+
+        <!-- Case 4: VidaPlena (Centro Médico) -->
+        <div class="sasico-white-card p-6 flex flex-col justify-between group cursor-pointer" onclick="abrirDetalhe('clinica')">
+          <div>
+            <!-- Palco 3D do Smartphone com Perspectiva e Sombra Real (Proporção Flagship 19.5:9) -->
+            <div class="phone-3d-stage w-full h-[360px] bg-gradient-to-b from-emerald-50/70 via-white to-slate-50/50 rounded-2xl border border-emerald-100 mb-5 relative overflow-hidden flex items-center justify-center p-4 group-hover:border-emerald-500/40 group-hover:shadow-md transition-all">
+              <!-- Sombra de Contato 3D no Chão -->
+              <div class="phone-3d-shadow"></div>
+
+              <!-- Aparelho 3D com Perspectiva Isométrica e Chassi Volumétrico -->
+              <div class="phone-3d-device w-[155px] h-[310px] bg-[#020617] rounded-[30px] border-[3.5px] border-[#1E293B] relative flex flex-col overflow-hidden">
+                <!-- Reflexo de Vidro em Diagonal -->
+                <div class="phone-glare"></div>
+                <!-- Status Bar Topo com Dynamic Island -->
+                <div class="pt-1.5 px-3 flex items-center justify-between text-[7px] font-mono text-slate-600 shrink-0 z-30">
+                  <span>09:41</span>
+                  <div class="w-10 h-2 bg-[#020617] rounded-full flex items-center justify-end px-1">
+                    <div class="w-1 h-1 rounded-full bg-emerald-500"></div>
+                  </div>
+                  <span>5G ▮</span>
+                </div>
+                <!-- Tela do App: VidaPlena -->
+                <div class="bg-[#F8FAFC] flex-1 px-2.5 py-2 text-slate-800 flex flex-col justify-between text-left font-sans relative z-20">
+                  <div class="space-y-2">
+                    <!-- Brand Bar -->
+                    <div class="flex items-center justify-between border-b border-emerald-200 pb-1.5">
+                      <div class="flex items-center gap-1">
+                        <div class="w-4 h-4 rounded bg-emerald-600 flex items-center justify-center text-white text-[8px]">✚</div>
+                        <div class="flex flex-col">
+                          <span class="text-[9.5px] font-black tracking-tight text-emerald-800 leading-none">VidaPlena</span>
+                          <span class="text-[6.5px] font-mono text-emerald-600 uppercase">Centro Médico</span>
+                        </div>
+                      </div>
+                      <span class="text-[7.5px] font-mono text-slate-500">Sala 04</span>
+                    </div>
+                    <!-- Patient Vitals Card -->
+                    <div class="p-2 rounded-lg bg-white border border-emerald-100 shadow-sm space-y-1">
+                      <div class="flex items-center justify-between">
+                        <span class="text-[9.5px] font-bold text-slate-900 leading-tight">Carlos Eduardo M.</span>
+                        <span class="text-[8px] font-bold text-emerald-700">42 anos</span>
+                      </div>
+                      <div class="grid grid-cols-3 gap-1 pt-0.5 text-center">
+                        <div class="p-0.5 rounded bg-emerald-50 text-[6.5px]">PA <strong>12/8</strong></div>
+                        <div class="p-0.5 rounded bg-emerald-50 text-[6.5px]">FC <strong>72 bpm</strong></div>
+                        <div class="p-0.5 rounded bg-emerald-50 text-[6.5px]">SpO2 <strong>99%</strong></div>
+                      </div>
+                    </div>
+                    <!-- Digital Prescription Tag -->
+                    <div class="p-1.5 rounded-lg bg-emerald-50 border border-emerald-200 text-[7px] text-emerald-800 flex items-center gap-1.5">
+                      <span>💊 Receita Digital com QR Code</span>
+                    </div>
+                    <!-- Status de Espera -->
+                    <div class="p-1.5 rounded bg-white border border-slate-200 text-[7px] text-slate-600 flex items-center justify-between">
+                      <span>Fila de Triagem:</span>
+                      <span class="text-emerald-700 font-bold">2 aguardando</span>
+                    </div>
+                  </div>
+                  <!-- Botão de Ação -->
+                  <div class="w-full py-1.5 rounded-lg bg-emerald-600 text-white text-[8px] font-bold text-center shadow-md">
+                    Chamar Paciente no Painel
+                  </div>
+                </div>
+                <!-- Home Indicator Bar -->
+                <div class="w-12 h-1 bg-slate-400/50 rounded-full mx-auto my-1 shrink-0 z-30"></div>
+              </div>
+            </div>
+
+            <!-- Dados do Card -->
+            <div class="flex items-center justify-between mb-2">
+              <span class="px-2.5 py-0.5 rounded-md bg-emerald-50 text-emerald-800 font-mono text-[10px] font-bold">VIDAPLENA &bull; SAÚDE</span>
+              <span class="px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-600 font-mono text-[10px] font-bold border border-emerald-200">● Ativo</span>
+            </div>
+            <h3 class="text-lg font-bold font-display text-[#021B42] mb-1.5 group-hover:text-[#004FFC] transition-colors">
+              VidaPlena — Triagem & Prontuário Digital
+            </h3>
+            <p class="text-[#64748B] text-xs leading-relaxed mb-4">
+              Solução ágil para clínicas e consultórios médicos: triagem de enfermagem em tablet, prontuário na tela do médico e emissão de receitas com carimbo eletrônico.
+            </p>
+          </div>
+          <div class="pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-mono text-[#64748B]">
+            <span>PWA &bull; Prontuário CFM &bull; LGPD</span>
+            <span class="text-[#004FFC] font-bold flex items-center gap-1 group-hover:translate-x-1 transition-transform">Ver Detalhes ➔</span>
+          </div>
+        </div>
+
+        <!-- Case 5: Valoris (Assessoria Contábil) -->
+        <div class="sasico-white-card p-6 flex flex-col justify-between group cursor-pointer" onclick="abrirDetalhe('contabil')">
+          <div>
+            <!-- Palco 3D do Smartphone com Perspectiva e Sombra Real (Proporção Flagship 19.5:9) -->
+            <div class="phone-3d-stage w-full h-[360px] bg-gradient-to-b from-amber-50/50 via-white to-slate-50/50 rounded-2xl border border-amber-900/20 mb-5 relative overflow-hidden flex items-center justify-center p-4 group-hover:border-amber-500/50 group-hover:shadow-md transition-all">
+              <!-- Sombra de Contato 3D no Chão -->
+              <div class="phone-3d-shadow"></div>
+
+              <!-- Aparelho 3D com Perspectiva Isométrica e Chassi Volumétrico -->
+              <div class="phone-3d-device w-[155px] h-[310px] bg-[#020617] rounded-[30px] border-[3.5px] border-[#1E293B] relative flex flex-col overflow-hidden">
+                <!-- Reflexo de Vidro em Diagonal -->
+                <div class="phone-glare"></div>
+                <!-- Status Bar Topo com Dynamic Island -->
+                <div class="pt-1.5 px-3 flex items-center justify-between text-[7px] font-mono text-white/70 shrink-0 z-30">
+                  <span>09:41</span>
+                  <div class="w-10 h-2 bg-[#020617] rounded-full flex items-center justify-end px-1 border border-white/10">
+                    <div class="w-1 h-1 rounded-full bg-amber-400"></div>
+                  </div>
+                  <span>5G ▮</span>
+                </div>
+                <!-- Tela do App: Valoris -->
+                <div class="bg-[#0F172A] flex-1 px-2.5 py-2 text-white flex flex-col justify-between text-left font-sans relative z-20">
+                  <div class="space-y-2">
+                    <!-- Brand Bar -->
+                    <div class="flex items-center justify-between border-b border-amber-500/20 pb-1.5">
+                      <div class="flex items-center gap-1">
+                        <div class="w-4 h-4 rounded bg-amber-500 flex items-center justify-center text-[#0F172A] text-[8.5px] font-black">V</div>
+                        <div class="flex flex-col">
+                          <span class="text-[9.5px] font-black tracking-tight text-amber-400 leading-none">VALORIS</span>
+                          <span class="text-[6.5px] font-mono text-amber-200/70 uppercase">CONTABILIDADE</span>
+                        </div>
+                      </div>
+                      <span class="text-[7px] font-mono text-amber-400 bg-amber-500/20 px-1.5 py-0.5 rounded">Vence Hoje</span>
+                    </div>
+                    <!-- Tax Bill Card -->
+                    <div class="p-2 rounded-lg bg-[#1E293B] border border-amber-500/30 space-y-1 shadow-sm">
+                      <div class="flex items-center justify-between">
+                        <span class="text-[7.5px] font-bold text-slate-300">DAS &bull; Simples Nacional</span>
+                        <span class="text-[7px] text-slate-400">09/2026</span>
+                      </div>
+                      <div class="text-[12px] font-extrabold text-white">R$ 1.840,50</div>
+                      <div class="text-[7px] text-amber-300 font-mono">Cód: 0142.9814.7721</div>
+                    </div>
+                    <!-- PIX Feature Tag -->
+                    <div class="p-1.5 rounded bg-amber-500/10 border border-amber-500/30 text-[7px] text-amber-200 flex items-center justify-between">
+                      <span>⚡ PIX Copia & Cola Gerado</span>
+                      <span class="text-emerald-400 font-bold">Baixa Instantânea</span>
+                    </div>
+                    <!-- Folha de Pagamento Status -->
+                    <div class="p-1.5 rounded bg-[#0a1020] border border-slate-800 text-[7px] text-slate-400 flex items-center justify-between">
+                      <span>Holerites do Mês:</span>
+                      <span class="text-emerald-400 font-bold">Enviados (12/12)</span>
+                    </div>
+                  </div>
+                  <!-- Botão de Ação -->
+                  <div class="w-full py-1.5 rounded-lg bg-gradient-to-r from-amber-600 to-amber-700 text-white text-[8px] font-bold text-center shadow-md">
+                    Pagar via PIX no App
+                  </div>
+                </div>
+                <!-- Home Indicator Bar -->
+                <div class="w-12 h-1 bg-white/40 rounded-full mx-auto my-1 shrink-0 z-30"></div>
+              </div>
+            </div>
+
+            <!-- Dados do Card -->
+            <div class="flex items-center justify-between mb-2">
+              <span class="px-2.5 py-0.5 rounded-md bg-amber-50 text-amber-800 font-mono text-[10px] font-bold">VALORIS &bull; FISCAL</span>
+              <span class="px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-600 font-mono text-[10px] font-bold border border-emerald-200">● Ativo</span>
+            </div>
+            <h3 class="text-lg font-bold font-display text-[#021B42] mb-1.5 group-hover:text-[#004FFC] transition-colors">
+              Valoris — Painel Fiscal & Cobrança PIX
+            </h3>
+            <p class="text-[#64748B] text-xs leading-relaxed mb-4">
+              Aplicativo de entrega direta de guias tributárias (DAS, FGTS, ICMS) com lembretes automáticos de vencimento e liquidação instantânea por PIX.
+            </p>
+          </div>
+          <div class="pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-mono text-[#64748B]">
+            <span>BACEN PIX &bull; Node.js &bull; OCR</span>
+            <span class="text-[#004FFC] font-bold flex items-center gap-1 group-hover:translate-x-1 transition-transform">Ver Detalhes ➔</span>
+          </div>
+        </div>
+
+        <!-- Case 6: Moradas (Imobiliária) -->
+        <div class="sasico-white-card p-6 flex flex-col justify-between group cursor-pointer" onclick="abrirDetalhe('imobiliaria')">
+          <div>
+            <!-- Palco 3D do Smartphone com Perspectiva e Sombra Real (Proporção Flagship 19.5:9) -->
+            <div class="phone-3d-stage w-full h-[360px] bg-gradient-to-b from-orange-50/60 via-white to-slate-50/50 rounded-2xl border border-orange-200/80 mb-5 relative overflow-hidden flex items-center justify-center p-4 group-hover:border-orange-500/40 group-hover:shadow-md transition-all">
+              <!-- Sombra de Contato 3D no Chão -->
+              <div class="phone-3d-shadow"></div>
+
+              <!-- Aparelho 3D com Perspectiva Isométrica e Chassi Volumétrico -->
+              <div class="phone-3d-device w-[155px] h-[310px] bg-[#020617] rounded-[30px] border-[3.5px] border-[#1E293B] relative flex flex-col overflow-hidden">
+                <!-- Reflexo de Vidro em Diagonal -->
+                <div class="phone-glare"></div>
+                <!-- Status Bar Topo com Dynamic Island -->
+                <div class="pt-1.5 px-3 flex items-center justify-between text-[7px] font-mono text-slate-600 shrink-0 z-30">
+                  <span>09:41</span>
+                  <div class="w-10 h-2 bg-[#020617] rounded-full flex items-center justify-end px-1">
+                    <div class="w-1 h-1 rounded-full bg-orange-500"></div>
+                  </div>
+                  <span>5G ▮</span>
+                </div>
+                <!-- Tela do App: Moradas Imóveis -->
+                <div class="bg-[#FFFDFB] flex-1 px-2.5 py-2 text-slate-800 flex flex-col justify-between text-left font-sans relative z-20">
+                  <div class="space-y-2">
+                    <!-- Brand Bar -->
+                    <div class="flex items-center justify-between border-b border-orange-200 pb-1.5">
+                      <div class="flex items-center gap-1">
+                        <div class="w-4 h-4 rounded bg-[#C2410C] flex items-center justify-center text-white text-[8px] font-bold">🏠</div>
+                        <div class="flex flex-col">
+                          <span class="text-[9.5px] font-black tracking-tight text-[#9A3412] leading-none">MORADAS</span>
+                          <span class="text-[6.5px] font-mono text-orange-700 uppercase">IMÓVEIS</span>
+                        </div>
+                      </div>
+                      <span class="text-[7px] font-bold text-orange-800 bg-orange-100 px-1.5 py-0.5 rounded">Vistoria</span>
+                    </div>
+                    <!-- Property Card -->
+                    <div class="p-2 rounded-lg bg-white border border-orange-200/80 shadow-sm space-y-1">
+                      <div class="flex items-center justify-between">
+                        <span class="text-[9px] font-bold text-slate-900 leading-tight">Edifício Solar &bull; 702</span>
+                        <span class="text-[7.5px] text-slate-500">18 Fotos</span>
+                      </div>
+                      <div class="text-[7px] text-slate-600">Pintura: OK • Pisos: Sem avarias</div>
+                    </div>
+                    <!-- Digital Signature Tag -->
+                    <div class="p-1.5 rounded-lg bg-orange-50 border border-orange-200 text-[7px] text-orange-900 flex items-center justify-between">
+                      <span>✍️ Assinado: Thiago P.</span>
+                      <span class="text-emerald-700 font-bold">Válido</span>
+                    </div>
+                    <!-- GPS / Carimbo -->
+                    <div class="p-1.5 rounded bg-white border border-slate-200 text-[7px] text-slate-500 flex items-center justify-between font-mono">
+                      <span>GPS: -23.5505, -46.6333</span>
+                      <span class="text-orange-700 font-bold">14:22h</span>
+                    </div>
+                  </div>
+                  <!-- Botão de Ação -->
+                  <div class="w-full py-1.5 rounded-lg bg-[#C2410C] text-white text-[8px] font-bold text-center shadow-md">
+                    Gerar Laudo com Fotos (PDF)
+                  </div>
+                </div>
+                <!-- Home Indicator Bar -->
+                <div class="w-12 h-1 bg-slate-400/50 rounded-full mx-auto my-1 shrink-0 z-30"></div>
+              </div>
+            </div>
+
+            <!-- Dados do Card -->
+            <div class="flex items-center justify-between mb-2">
+              <span class="px-2.5 py-0.5 rounded-md bg-orange-50 text-orange-800 font-mono text-[10px] font-bold">MORADAS &bull; IMOBILIÁRIA</span>
+              <span class="px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-600 font-mono text-[10px] font-bold border border-emerald-200">● Ativo</span>
+            </div>
+            <h3 class="text-lg font-bold font-display text-[#021B42] mb-1.5 group-hover:text-[#004FFC] transition-colors">
+              Moradas — Vistoria de Imóveis & Assinatura
+            </h3>
+            <p class="text-[#64748B] text-xs leading-relaxed mb-4">
+              Checklist digital de vistoria pelo celular do corretor: fotos com carimbo de hora e satélite (GPS), assinatura na tela e emissão imediata do laudo para a imobiliária.
+            </p>
+          </div>
+          <div class="pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-mono text-[#64748B]">
+            <span>Flutter &bull; Câmera SDK &bull; GPS</span>
+            <span class="text-[#004FFC] font-bold flex items-center gap-1 group-hover:translate-x-1 transition-transform">Ver Detalhes ➔</span>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================================================================= -->
+  <!-- 5. FAIXA CLARA 3: COMO FUNCIONA (100% DE PONTA A PONTA)                   -->
+  <!-- ========================================================================= -->
+  <section id="como-funciona" class="w-full bg-white py-20 px-4 sm:px-8 border-b border-slate-200">
+    <div class="max-w-7xl mx-auto space-y-12">
+      
+      <div class="text-center max-w-3xl mx-auto space-y-3">
+        <span class="pill-sasico-light">Método Transparente</span>
+        <h2 class="text-3xl sm:text-4xl font-display font-extrabold text-[#021B42]">
+          Como tiramos sua ideia do papel
+        </h2>
+        <p class="text-[#64748B] text-sm">
+          Sem reuniões intermináveis. 4 passos simples e você tem a solução funcionando.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+        
+        <div class="bg-[#F8FAFC] p-6 rounded-2xl border border-slate-200 space-y-3 shadow-sm hover:border-[#004FFC]/40 transition-colors">
+          <div class="w-10 h-10 rounded-xl bg-[#004FFC] text-white font-bold flex items-center justify-center">01</div>
+          <h4 class="font-bold text-[#021B42] text-base">Você diz o problema</h4>
+          <p class="text-[#64748B] text-xs leading-relaxed">Você nos conta o que está travando o seu tempo ou de seus funcionários.</p>
+        </div>
+
+        <div class="bg-[#F8FAFC] p-6 rounded-2xl border border-slate-200 space-y-3 shadow-sm hover:border-[#004FFC]/40 transition-colors">
+          <div class="w-10 h-10 rounded-xl bg-[#004FFC] text-white font-bold flex items-center justify-center">02</div>
+          <h4 class="font-bold text-[#021B42] text-base">Manda o briefing</h4>
+          <p class="text-[#64748B] text-xs leading-relaxed">Um áudio ou formulário simples no WhatsApp explicando o que o sistema deve fazer.</p>
+        </div>
+
+        <div class="bg-[#F8FAFC] p-6 rounded-2xl border border-slate-200 space-y-3 shadow-sm hover:border-[#004FFC]/40 transition-colors">
+          <div class="w-10 h-10 rounded-xl bg-[#004FFC] text-white font-bold flex items-center justify-center">03</div>
+          <h4 class="font-bold text-[#021B42] text-base">Preço claro na mesa</h4>
+          <p class="text-[#64748B] text-xs leading-relaxed">Apresentamos a solução e o valor justo. Sem surpresas ou taxas escondidas.</p>
+        </div>
+
+        <div class="bg-[#F8FAFC] p-6 rounded-2xl border border-slate-200 space-y-3 shadow-sm hover:border-[#004FFC]/40 transition-colors">
+          <div class="w-10 h-10 rounded-xl bg-[#004FFC] text-white font-bold flex items-center justify-center">04</div>
+          <h4 class="font-bold text-[#021B42] text-base">Entrada singela & deploy</h4>
+          <p class="text-[#64748B] text-xs leading-relaxed">Você inicia com uma entrada pequena, aprova as telas e recebe o sistema pronto.</p>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================================================================= -->
+  <!-- 6. SEÇÃO DE BRIEFING (100% DE PONTA A PONTA COM CARD CENTRALIZADO)        -->
+  <!-- ========================================================================= -->
+  <section id="briefing" class="w-full bg-[#EDF2FF] py-24 px-4 sm:px-8 border-b border-blue-200/60">
+    <div class="max-w-4xl mx-auto sasico-white-card p-8 sm:p-14 border border-blue-200 relative overflow-hidden shadow-xl">
+      
+      <div class="text-center max-w-2xl mx-auto mb-10 space-y-3">
+        <span class="pill-sasico-light">
+          SEM COMPROMISSO
+        </span>
+        <h2 class="text-3xl sm:text-5xl font-display font-extrabold text-[#021B42]">
+          Diga o que você precisa resolver
+        </h2>
+        <p class="text-[#64748B] text-sm">
+          Preencha os 3 campos abaixo. Nós analisamos a sua necessidade e já retornamos com uma proposta de solução direta, com valor justo e entrada singela.
+        </p>
+      </div>
+
+      <form id="form-briefing" onsubmit="enviarBriefing(event)" class="space-y-6">
+        
+        <div>
+          <label class="block text-xs font-mono uppercase tracking-wider text-[#475569] mb-2 font-bold">
+            1. Qual é o seu tipo de negócio?
+          </label>
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+            <label class="p-4 rounded-xl bg-[#F8FAFC] border border-slate-200 flex items-center gap-3 cursor-pointer hover:border-[#004FFC] transition-all">
+              <input type="radio" name="ramo" value="Consultório / Clínica" checked class="accent-[#004FFC]">
+              <span class="text-xs font-bold text-[#021B42]">Consultório / Clínica</span>
+            </label>
+            <label class="p-4 rounded-xl bg-[#F8FAFC] border border-slate-200 flex items-center gap-3 cursor-pointer hover:border-[#004FFC] transition-all">
+              <input type="radio" name="ramo" value="Escritório de Advocacia" class="accent-[#004FFC]">
+              <span class="text-xs font-bold text-[#021B42]">Escritório de Advocacia</span>
+            </label>
+            <label class="p-4 rounded-xl bg-[#F8FAFC] border border-slate-200 flex items-center gap-3 cursor-pointer hover:border-[#004FFC] transition-all">
+              <input type="radio" name="ramo" value="Assessoria / Empresa" class="accent-[#004FFC]">
+              <span class="text-xs font-bold text-[#021B42]">Assessoria / Empresa</span>
+            </label>
+          </div>
+        </div>
+
+        <div>
+          <label for="descricao-problema" class="block text-xs font-mono uppercase tracking-wider text-[#475569] mb-2 font-bold">
+            2. Qual é a dor ou processo manual que você quer resolver?
+          </label>
+          <textarea 
+            id="descricao-problema" 
+            rows="3" 
+            required
+            placeholder="Exemplo: Preciso que meus clientes consigam consultar o status dos processos pelo celular e baixem os comprovantes sem me mandar mensagem no WhatsApp o tempo todo..." 
+            class="w-full p-4 rounded-xl bg-[#F8FAFC] border border-slate-300 text-[#021B42] text-sm focus:border-[#004FFC] focus:bg-white focus:outline-none transition-colors placeholder:text-slate-400"
+          ></textarea>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label for="contato-nome" class="block text-xs font-mono uppercase tracking-wider text-[#475569] mb-2 font-bold">
+              3. Seu Nome ou do seu Escritório
+            </label>
+            <input 
+              type="text" 
+              id="contato-nome" 
+              required
+              placeholder="Ex: Dr. Roberto / Advocacia Silva" 
+              class="w-full p-3.5 rounded-xl bg-[#F8FAFC] border border-slate-300 text-[#021B42] text-sm focus:border-[#004FFC] focus:bg-white focus:outline-none transition-colors placeholder:text-slate-400"
+            />
+          </div>
+          <div>
+            <label for="contato-whatsapp" class="block text-xs font-mono uppercase tracking-wider text-[#475569] mb-2 font-bold">
+              Seu WhatsApp para contato
+            </label>
+            <input 
+              type="text" 
+              id="contato-whatsapp" 
+              required
+              placeholder="(DDD) 99999-9999" 
+              class="w-full p-3.5 rounded-xl bg-[#F8FAFC] border border-slate-300 text-[#021B42] text-sm focus:border-[#004FFC] focus:bg-white focus:outline-none transition-colors placeholder:text-slate-400"
+            />
+          </div>
+        </div>
+
+        <div class="pt-4 flex flex-col sm:flex-row items-center justify-between gap-4 border-t border-slate-200">
+          <div class="text-xs font-mono text-[#475569] flex items-center gap-2">
+            <i data-lucide="shield-check" class="w-4 h-4 text-emerald-600"></i>
+            <span>Briefing confidencial &bull; Resposta direta no WhatsApp</span>
+          </div>
+
+          <button type="submit" class="btn-sasico-primary w-full sm:w-auto justify-center">
+            <span>Enviar Briefing no WhatsApp</span>
+            <div class="arrow-circle">
+              <i data-lucide="arrow-right" class="w-4 h-4 text-[#004FFC]"></i>
+            </div>
+          </button>
+        </div>
+
+      </form>
+
+    </div>
+  </section>
+
+  <!-- ========================================================================= -->
+  <!-- 7. FOOTER (100% DE PONTA A PONTA)                                         -->
+  <!-- ========================================================================= -->
+  <footer class="w-full bg-[#000714] py-16 px-4 sm:px-8 text-xs text-[#8E9FB8] font-mono border-t border-white/10">
+    <div class="max-w-7xl mx-auto">
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-8 mb-12">
+        
+        <div class="md:col-span-6 space-y-3">
+          <div class="flex items-center gap-3 text-white font-display font-black text-xl">
+            <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-[#001438] via-[#091133] to-[#1a0c2e] border border-white/10 flex items-center justify-center text-white">
+              <svg width="20" height="20" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M7 5H14C16.8 5 19 7.2 19 10C19 12.1 17.6 13.8 15.6 14.5C18.2 15.1 20 17.2 20 20C20 23 17.5 25 14.5 25H7V5Z" stroke="#8B5CF6" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M7 14.5H15" stroke="#8B5CF6" stroke-width="2.3" stroke-linecap="round"/>
+                <circle cx="17" cy="14.5" r="1" fill="#F472B6" />
+              </svg>
+            </div>
+            <div class="flex items-center gap-1">
+              <span>BIA</span>
+              <span class="w-1.5 h-1.5 rounded-full bg-gradient-to-tr from-[#004FFC] to-[#F472B6] -mt-1"></span>
+            </div>
+            <span class="text-[9px] font-mono text-[#8E9FB8] tracking-widest uppercase font-normal ml-2">Base Integrada de Aplicações</span>
+          </div>
+          <p class="text-xs text-[#8E9FB8] max-w-md leading-relaxed font-sans">
+            "Não somos super nada, mas iremos resolver o seu problema." Aplicações e integrações sob medida por um preço justo para consultórios, advocacias e assessorias.
+          </p>
+        </div>
+
+        <div class="md:col-span-3 space-y-2">
+          <span class="text-white font-bold block mb-2">NAVEGAÇÃO</span>
+          <div><a href="#solucoes-claras" class="hover:text-white transition-colors">Para Quem É</a></div>
+          <div><a href="#casos-reais" class="hover:text-white transition-colors">Casos Reais</a></div>
+          <div><a href="#como-funciona" class="hover:text-white transition-colors">Como Funciona</a></div>
+          <div><a href="#briefing" class="hover:text-white transition-colors">Enviar Briefing</a></div>
+        </div>
+
+        <div class="md:col-span-3 space-y-2">
+          <span class="text-white font-bold block mb-2">CONTATO DIRETO</span>
+          <div>WhatsApp: Conversa direta com o desenvolvedor</div>
+          <div>Entrada facilitada &bull; Preço sem pegadinhas</div>
+          <div class="pt-2 text-emerald-400">● Disponível para novos briefings</div>
+        </div>
+
+      </div>
+
+      <div class="pt-8 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div>&copy; 2026 BIA &bull; Base Integrada de Aplicações. Todos os direitos reservados.</div>
+        <div class="flex items-center gap-4">
+          <a href="https://github.com/barbosacalado-bit" target="_blank" class="hover:text-white transition-colors flex items-center gap-1.5">
+            <i data-lucide="github" class="w-4 h-4"></i>
+            <span>barbosacalado-bit</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ========================================================================= -->
+  <!-- 8. MODAL DETALHE DE CASO                                                  -->
+  <!-- ========================================================================= -->
+  <div id="modal-caso" class="fixed inset-0 z-50 hidden bg-black/75 backdrop-blur-md flex items-center justify-center p-4">
+    <div class="bg-white rounded-3xl max-w-2xl w-full p-6 sm:p-8 space-y-5 border border-slate-200 shadow-2xl relative">
+      <div class="flex justify-between items-center border-b border-slate-100 pb-4">
+        <div>
+          <span id="caso-tag" class="text-[10px] font-mono text-[#004FFC] uppercase font-bold">CATEGORIA</span>
+          <h3 id="caso-titulo" class="text-xl font-bold font-display text-[#021B42]">Título do Caso</h3>
+        </div>
+        <button onclick="fecharDetalhe()" class="p-2 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 transition-colors">
+          <i data-lucide="x" class="w-4 h-4"></i>
+        </button>
+      </div>
+
+      <div class="space-y-4 text-xs leading-relaxed font-sans">
+        <div>
+          <h4 class="font-bold text-[#004FFC] uppercase font-mono text-[11px] mb-1">O Problema que o Cliente Tinha:</h4>
+          <p id="caso-problema" class="text-[#475569]">...</p>
+        </div>
+        <div>
+          <h4 class="font-bold text-emerald-700 uppercase font-mono text-[11px] mb-1">A Solução sob Medida que Entregamos:</h4>
+          <p id="caso-solucao" class="text-[#475569]">...</p>
+        </div>
+        <div class="p-4 rounded-xl bg-[#EDF2FF] border border-blue-100 flex items-center justify-between">
+          <div>
+            <span class="text-[10px] font-mono text-[#64748B] uppercase">Resultado</span>
+            <div id="caso-resultado" class="text-sm font-bold text-[#021B42]">...</div>
+          </div>
+          <span class="px-2.5 py-1 rounded bg-emerald-100 text-emerald-800 font-mono text-xs font-bold border border-emerald-300">100% Resolvido</span>
+        </div>
+      </div>
+
+      <div class="pt-4 border-t border-slate-100 flex items-center justify-between">
+        <span class="text-xs text-[#64748B] font-mono">Tem um problema similar?</span>
+        <a href="#briefing" onclick="fecharDetalhe()" class="btn-sasico-primary">
+          <span class="text-xs">Quero uma Solução Assim</span>
+          <div class="arrow-circle">
+            <i data-lucide="arrow-right" class="w-4 h-4 text-[#004FFC]"></i>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    lucide.createIcons();
+
+    function toggleMobileMenu() {
+      const menu = document.getElementById('mobile-menu');
+      menu.classList.toggle('hidden');
+    }
+
+    const casos = {
+      helpdesk: {
+        tag: 'NEXUSUPPORT • HELP DESK & TI',
+        titulo: 'NexuSupport — Central de Chamados Técnicos & SLA',
+        problema: 'A equipe de suporte técnico e TI sofria com chamados perdidos em conversas soltas no WhatsApp, falta de controle de SLA e clientes cobrando status sem resposta.',
+        solucao: 'Desenvolvemos o aplicativo sob medida NexuSupport: abertura de chamados com foto e prioridade, contagem regressiva de SLA e disparo de atualizações no WhatsApp do cliente.',
+        resultado: 'Tempo de resposta reduzido em 65%, com 100% dos chamados documentados e clientes satisfeitos com o retorno rápido.'
+      },
+      odonto: {
+        tag: 'SORRISOPRIME • ODONTOLOGIA INTEGRADA',
+        titulo: 'SorrisoPrime — Gestão Clínica & Retornos Periódicos',
+        problema: 'Pacientes faltavam às consultas de manutenção e clareamento sem avisar, gerando horários ociosos na cadeira e perda de faturamento recorrente.',
+        solucao: 'Criamos o app SorrisoPrime integrado à agenda: lembretes automáticos no WhatsApp 24h antes para confirmação de presença e disparo inteligente para retornos semestrais.',
+        resultado: 'Redução de 45% nas faltas e recuperação de dezenas de pacientes antigos que estavam sem consultar há mais de 6 meses.'
+      },
+      advocacia: {
+        tag: 'ALBUQUERQUE & PRADO • ADVOGADOS ASSOCIADOS',
+        titulo: 'Albuquerque & Prado — Portal Jurídico do Cliente',
+        problema: 'Clientes ligavam e mandavam mensagens constantemente para saber "como está o processo", interrompendo a produção de peças e audiências da equipe jurídica.',
+        solucao: 'Construímos o portal mobile Albuquerque & Prado: o cliente faz login com CPF e acompanha linha do tempo limpa, certidões liberadas e baixa petições em PDF na hora.',
+        resultado: 'Queda de 80% nas mensagens de rotina no WhatsApp e elevação substancial na percepção de valor e sofisticação do escritório.'
+      },
+      clinica: {
+        tag: 'VIDAPLENA • CENTRO MÉDICO & DIAGNÓSTICOS',
+        titulo: 'VidaPlena — Triagem Rápida & Prontuário Digital',
+        problema: 'Filas na recepção causadas pelo preenchimento de fichas físicas em papel, lentidão na entrega do histórico ao médico e risco de extravio de prontuários.',
+        solucao: 'Aplicativo VidaPlena para enfermagem e consultórios: sinais vitais coletados na triagem vão em tempo real para a tela do médico, com prescrições eletrônicas com QR Code.',
+        resultado: 'Atendimento 50% mais rápido da recepção ao consultório e eliminação completa do papel físico.'
+      },
+      contabil: {
+        tag: 'VALORIS • GESTÃO CONTÁBIL & TRIBUTÁRIA',
+        titulo: 'Valoris — Painel Fiscal & Pagamento PIX com Baixa',
+        problema: 'Clientes esqueciam datas de vencimento de guias fiscais (DAS, ICMS, FGTS) enviadas por e-mail, gerando juros, retrabalho contábil e atrasos de pagamento.',
+        solucao: 'Aplicativo Valoris no celular do empresário: alertas de vencimento na tela, código de barras escaneável e chave PIX dinâmica com conciliação automática no sistema.',
+        resultado: 'Inadimplência de guias reduzida a praticamente zero e conciliação bancária resolvida em segundos.'
+      },
+      imobiliaria: {
+        tag: 'MORADAS • IMÓVEIS & VISTORIAS',
+        titulo: 'Moradas — Checklist de Vistoria com Assinatura Digital',
+        problema: 'Vistoriadores tiravam fotos avulsas e perdiam dias digitando laudos no Word, gerando contestações jurídicas na devolução das chaves por falta de provas claras.',
+        solucao: 'App mobile Moradas: fotos de cada cômodo tiradas na hora com carimbo de geolocalização e data, checklist visual e assinatura do inquilino na tela sensível ao toque.',
+        resultado: 'Laudo pericial com fotos e assinatura gerado em PDF em menos de 15 minutos, com validade jurídica incontestável.'
+      }
+    };
+
+    function abrirDetalhe(id) {
+      const c = casos[id];
+      if (!c) return;
+
+      document.getElementById('caso-tag').innerText = c.tag;
+      document.getElementById('caso-titulo').innerText = c.titulo;
+      document.getElementById('caso-problema').innerText = c.problema;
+      document.getElementById('caso-solucao').innerText = c.solucao;
+      document.getElementById('caso-resultado').innerText = c.resultado;
+
+      document.getElementById('modal-caso').classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+      lucide.createIcons();
+    }
+
+    function fecharDetalhe() {
+      document.getElementById('modal-caso').classList.add('hidden');
+      document.body.style.overflow = 'auto';
+    }
+
+    document.getElementById('modal-caso').addEventListener('click', function(e) {
+      if (e.target === this) fecharDetalhe();
+    });
+
+    function enviarBriefing(e) {
+      e.preventDefault();
+
+      const ramo = document.querySelector('input[name="ramo"]:checked').value;
+      const problema = document.getElementById('descricao-problema').value;
+      const nome = document.getElementById('contato-nome').value;
+      const whatsapp = document.getElementById('contato-whatsapp').value;
+
+      const mensagem = `*SOLICITAÇÃO DE BRIEFING — BIA (Base Integrada de Aplicações)*\n\n` +
+                       `*Nome / Empresa:* ${nome}\n` +
+                       `*WhatsApp:* ${whatsapp}\n` +
+                       `*Ramo de Atuação:* ${ramo}\n\n` +
+                       `*O Problema que preciso resolver:*\n${problema}\n\n` +
+                       `Vi no site da BIA a proposta de preço justo, sem super aplicativo e com entrada singela. Gostaria de ver uma solução para o meu caso!`;
+
+      const url = `https://wa.me/?text=${encodeURIComponent(mensagem)}`;
+      window.open(url, '_blank');
+    }
+  </script>
+</body>
+</html>
