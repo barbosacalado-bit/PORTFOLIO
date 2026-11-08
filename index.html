@@ -14,6 +14,9 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <!-- Lucide Icons -->
   <script src="https://unpkg.com/lucide@latest"></script>
+  <!-- AOS (Animate On Scroll) CSS & JS -->
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
 
   <style>
     :root {
@@ -198,6 +201,103 @@
       100% {
         transform: translateY(9px);
       }
+    }
+
+    /* Animação Contínua de Flutuação Suave para Mockup Hero e Elementos Vivos */
+    @keyframes float-slow {
+      0%, 100% {
+        transform: translateY(0px);
+      }
+      50% {
+        transform: translateY(-8px);
+      }
+    }
+
+    @keyframes pulse-subtle {
+      0%, 100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+      50% {
+        opacity: 0.85;
+        transform: scale(1.02);
+      }
+    }
+
+    @keyframes glow-line {
+      0% {
+        background-position: -200% 0;
+      }
+      100% {
+        background-position: 200% 0;
+      }
+    }
+
+    .animate-float-slow {
+      animation: float-slow 5s ease-in-out infinite;
+    }
+
+    .hero-mockup-glow {
+      position: relative;
+    }
+
+    .hero-mockup-glow::before {
+      content: '';
+      position: absolute;
+      inset: -2px;
+      border-radius: 26px;
+      background: linear-gradient(90deg, rgba(0, 79, 252, 0.4), rgba(0, 210, 255, 0.6), rgba(139, 92, 246, 0.4), rgba(0, 79, 252, 0.4));
+      background-size: 300% 100%;
+      animation: glow-line 8s linear infinite;
+      z-index: -1;
+      opacity: 0.6;
+      filter: blur(8px);
+    }
+
+    /* Brilho Shimmer nos Botões de Ação */
+    .btn-shimmer {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-shimmer::after {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -60%;
+      width: 40%;
+      height: 200%;
+      background: linear-gradient(
+        90deg,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(255, 255, 255, 0.3) 50%,
+        rgba(255, 255, 255, 0) 100%
+      );
+      transform: rotate(25deg);
+      animation: button-shimmer 4s infinite cubic-bezier(0.19, 1, 0.22, 1);
+    }
+
+    @keyframes button-shimmer {
+      0% {
+        left: -60%;
+      }
+      30%, 100% {
+        left: 140%;
+      }
+    }
+
+    /* Cursor de Digitação Dinâmica */
+    .typewriter-cursor {
+      display: inline-block;
+      margin-left: 2px;
+      color: #00D2FF;
+      font-weight: 300;
+      animation: blink-cursor 0.8s infinite;
+    }
+
+    @keyframes blink-cursor {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
     }
 
     .animate-float-showroom {
@@ -578,12 +678,12 @@
           </h1>
 
           <p class="text-base sm:text-lg text-[#8E9FB8] max-w-2xl leading-relaxed font-normal mx-auto lg:mx-0">
-            Desenvolvimento ágil, preço justo e zero complicações. Criamos aplicativos, portais e automações pontuais para <strong>consultórios, advocacias e empresas</strong> resolverem gargalos do dia a dia.
+            Desenvolvimento ágil, preço justo e zero complicações. Criamos aplicativos, portais e automações pontuais para <strong class="text-white font-semibold"><span id="typewriter-hero">consultórios</span><span class="typewriter-cursor">|</span></strong> resolverem gargalos do dia a dia.
           </p>
 
           <!-- Botões -->
           <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2">
-            <a href="#briefing" class="btn-sasico-primary w-full sm:w-auto justify-center">
+            <a href="#briefing" class="btn-sasico-primary btn-shimmer w-full sm:w-auto justify-center">
               <span>Conte seu Problema</span>
               <div class="arrow-circle">
                 <i data-lucide="arrow-right" class="w-4 h-4 text-[#004FFC]"></i>
@@ -614,10 +714,10 @@
         </div>
 
         <!-- Mockup Gráfico da Solução -->
-        <div class="lg:col-span-5 flex justify-center relative">
-          <div class="absolute -inset-4 bg-gradient-to-tr from-[#004FFC]/20 to-[#6698FF]/10 rounded-3xl blur-2xl -z-10"></div>
+        <div class="lg:col-span-5 flex justify-center relative animate-float-slow">
+          <div class="absolute -inset-4 bg-gradient-to-tr from-[#004FFC]/25 to-[#00D2FF]/20 rounded-3xl blur-2xl -z-10"></div>
 
-          <div class="mockup-window w-full max-w-md p-6 space-y-5 select-none">
+          <div class="mockup-window hero-mockup-glow w-full max-w-md p-6 space-y-5 select-none transition-transform duration-500 hover:scale-[1.02]">
             <div class="flex items-center justify-between border-b border-white/10 pb-4">
               <div class="flex items-center gap-2">
                 <span class="w-3 h-3 rounded-full bg-rose-500/80"></span>
@@ -853,8 +953,8 @@
       <!-- TRIO DE CARDS BRANCOS -->
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
         
-        <div class="sasico-white-card p-8 space-y-5">
-          <div class="w-14 h-14 rounded-2xl bg-[#EDF4FF] flex items-center justify-center text-[#004FFC]">
+        <div class="sasico-white-card p-8 space-y-5" data-aos="fade-up" data-aos-delay="100">
+          <div class="w-14 h-14 rounded-2xl bg-[#EDF4FF] flex items-center justify-center text-[#004FFC] transition-transform duration-300 group-hover:scale-110">
             <i data-lucide="stethoscope" class="w-7 h-7"></i>
           </div>
           <h3 class="text-xl font-bold font-display text-[#021B42]">
@@ -870,8 +970,8 @@
           </div>
         </div>
 
-        <div class="sasico-white-card p-8 space-y-5">
-          <div class="w-14 h-14 rounded-2xl bg-[#EDF4FF] flex items-center justify-center text-[#004FFC]">
+        <div class="sasico-white-card p-8 space-y-5" data-aos="fade-up" data-aos-delay="200">
+          <div class="w-14 h-14 rounded-2xl bg-[#EDF4FF] flex items-center justify-center text-[#004FFC] transition-transform duration-300 group-hover:scale-110">
             <i data-lucide="scale" class="w-7 h-7"></i>
           </div>
           <h3 class="text-xl font-bold font-display text-[#021B42]">
@@ -887,7 +987,7 @@
           </div>
         </div>
 
-        <div class="sasico-white-card p-8 space-y-5">
+        <div class="sasico-white-card p-8 space-y-5" data-aos="fade-up" data-aos-delay="300">
           <div class="w-14 h-14 rounded-2xl bg-[#EDF4FF] flex items-center justify-center text-[#004FFC]">
             <i data-lucide="briefcase" class="w-7 h-7"></i>
           </div>
@@ -909,7 +1009,7 @@
       <!-- DUPLA DE CARDS DE DESTAQUE -->
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 pt-4">
         
-        <div class="lg:col-span-5 rounded-3xl bg-gradient-to-br from-[#004FFC] via-[#003ECC] to-[#0A266B] p-8 text-white relative overflow-hidden flex flex-col justify-between min-h-[380px] shadow-xl">
+        <div class="lg:col-span-5 rounded-3xl bg-gradient-to-br from-[#004FFC] via-[#003ECC] to-[#0A266B] p-8 text-white relative overflow-hidden flex flex-col justify-between min-h-[380px] shadow-xl group" data-aos="fade-right">
           <div class="space-y-2 z-10">
             <span class="px-3 py-1 rounded-full bg-white/20 text-white text-xs font-mono font-bold uppercase">
               EXPERIÊNCIA MÓVEL
@@ -922,7 +1022,7 @@
             </p>
           </div>
 
-          <div class="mt-6 -mb-10 mx-auto w-64 bg-[#010915] rounded-t-3xl border-4 border-white/20 p-3 shadow-2xl z-10">
+          <div class="mt-6 -mb-10 mx-auto w-64 bg-[#010915] rounded-t-3xl border-4 border-white/20 p-3 shadow-2xl z-10 transition-transform duration-500 group-hover:-translate-y-2">
             <div class="w-16 h-3 bg-white/30 rounded-full mx-auto mb-3"></div>
             <div class="bg-white rounded-xl p-3 text-[#021B42] text-[11px] space-y-2 shadow">
               <div class="font-bold flex items-center justify-between">
@@ -934,7 +1034,7 @@
           </div>
         </div>
 
-        <div class="lg:col-span-7 sasico-white-card p-8 sm:p-12 flex flex-col justify-between space-y-6">
+        <div class="lg:col-span-7 sasico-white-card p-8 sm:p-12 flex flex-col justify-between space-y-6" data-aos="fade-left">
           <div class="space-y-4">
             <div>
               <span class="pill-sasico-light">Por que as pessoas nos escolhem?</span>
@@ -987,7 +1087,7 @@
     <div class="max-w-7xl mx-auto space-y-14">
       
       <!-- Topo da Seção de Casos -->
-      <div class="flex flex-col md:flex-row md:items-end justify-between gap-6">
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-6" data-aos="fade-up">
         <div>
           <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white border border-blue-200 text-xs font-mono font-bold text-[#004FFC] mb-3 shadow-sm">
             <i data-lucide="check-circle" class="w-3.5 h-3.5"></i>
@@ -1522,7 +1622,7 @@
     <div class="max-w-7xl mx-auto space-y-16">
       
       <!-- Topo da Seção de Websites -->
-      <div class="flex flex-col md:flex-row md:items-end justify-between gap-6">
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-6" data-aos="fade-up">
         <div>
           <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-200 text-xs font-mono font-bold text-[#004FFC] mb-3 shadow-sm">
             <i data-lucide="globe" class="w-3.5 h-3.5"></i>
@@ -1546,7 +1646,7 @@
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
         
         <!-- CARD 1: ADVOCACIA & BANCAS JURÍDICAS -->
-        <div class="sasico-white-card p-6 sm:p-8 rounded-3xl border border-slate-200/80 hover:border-[#004FFC]/40 hover:shadow-2xl transition-all duration-300 flex flex-col justify-between group">
+        <div class="sasico-white-card p-6 sm:p-8 rounded-3xl border border-slate-200/80 hover:border-[#004FFC]/40 hover:shadow-2xl transition-all duration-300 flex flex-col justify-between group" data-aos="fade-up" data-aos-delay="100">
           <div class="space-y-6">
             
             <!-- Palco Duo 3D -->
@@ -1657,7 +1757,7 @@
         </div>
 
         <!-- CARD 2: CLÍNICAS MÉDICAS & ODONTOLOGIA -->
-        <div class="sasico-white-card p-6 sm:p-8 rounded-3xl border border-slate-200/80 hover:border-[#004FFC]/40 hover:shadow-2xl transition-all duration-300 flex flex-col justify-between group">
+        <div class="sasico-white-card p-6 sm:p-8 rounded-3xl border border-slate-200/80 hover:border-[#004FFC]/40 hover:shadow-2xl transition-all duration-300 flex flex-col justify-between group" data-aos="fade-up" data-aos-delay="200">
           <div class="space-y-6">
             
             <!-- Palco Duo 3D -->
@@ -1769,7 +1869,7 @@
         </div>
 
         <!-- CARD 3: IMÓVEIS & EMPREENDIMENTOS -->
-        <div class="sasico-white-card p-6 sm:p-8 rounded-3xl border border-slate-200/80 hover:border-[#004FFC]/40 hover:shadow-2xl transition-all duration-300 flex flex-col justify-between group">
+        <div class="sasico-white-card p-6 sm:p-8 rounded-3xl border border-slate-200/80 hover:border-[#004FFC]/40 hover:shadow-2xl transition-all duration-300 flex flex-col justify-between group" data-aos="fade-up" data-aos-delay="100">
           <div class="space-y-6">
             
             <!-- Palco Duo 3D -->
@@ -1880,7 +1980,7 @@
         </div>
 
         <!-- CARD 4: ASSOCIAÇÕES & EMPRESAS CORPORATIVAS -->
-        <div class="sasico-white-card p-6 sm:p-8 rounded-3xl border border-slate-200/80 hover:border-[#004FFC]/40 hover:shadow-2xl transition-all duration-300 flex flex-col justify-between group">
+        <div class="sasico-white-card p-6 sm:p-8 rounded-3xl border border-slate-200/80 hover:border-[#004FFC]/40 hover:shadow-2xl transition-all duration-300 flex flex-col justify-between group" data-aos="fade-up" data-aos-delay="200">
           <div class="space-y-6">
             
             <!-- Palco Duo 3D -->
@@ -1993,7 +2093,7 @@
       </div>
 
       <!-- Faixa de Compromissos e Diferenciais do Desenvolvimento BIA -->
-      <div class="bg-[#F8FAFC] rounded-3xl p-8 sm:p-10 border border-slate-200/90 shadow-sm">
+      <div class="bg-[#F8FAFC] rounded-3xl p-8 sm:p-10 border border-slate-200/90 shadow-sm" data-aos="fade-up">
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
           
           <div class="flex items-start gap-4">
@@ -2045,7 +2145,7 @@
     <div class="max-w-7xl mx-auto space-y-16">
       
       <!-- Topo da Seção de Gateways -->
-      <div class="flex flex-col md:flex-row md:items-end justify-between gap-6">
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-6" data-aos="fade-up">
         <div>
           <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white border border-blue-200 text-xs font-mono font-bold text-[#004FFC] mb-3 shadow-sm">
             <i data-lucide="credit-card" class="w-3.5 h-3.5"></i>
@@ -2070,7 +2170,7 @@
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-7">
         
         <!-- CARD 1: ASAAS -->
-        <div class="sasico-white-card p-6 sm:p-7 rounded-3xl border border-blue-100/90 hover:border-[#004FFC]/40 hover:shadow-xl transition-all duration-300 flex flex-col justify-between group bg-white">
+        <div class="sasico-white-card p-6 sm:p-7 rounded-3xl border border-blue-100/90 hover:border-[#004FFC]/40 hover:shadow-xl transition-all duration-300 flex flex-col justify-between group bg-white" data-aos="fade-up" data-aos-delay="100">
           <div class="space-y-5">
             <!-- Box da Marca Oficial -->
             <div class="h-16 rounded-2xl bg-[#002C53] p-3 flex items-center justify-between border border-slate-800 shadow-inner">
@@ -2115,7 +2215,7 @@
         </div>
 
         <!-- CARD 2: EFÍ BANK (GERENCIANET) -->
-        <div class="sasico-white-card p-6 sm:p-7 rounded-3xl border border-blue-100/90 hover:border-[#004FFC]/40 hover:shadow-xl transition-all duration-300 flex flex-col justify-between group bg-white">
+        <div class="sasico-white-card p-6 sm:p-7 rounded-3xl border border-blue-100/90 hover:border-[#004FFC]/40 hover:shadow-xl transition-all duration-300 flex flex-col justify-between group bg-white" data-aos="fade-up" data-aos-delay="200">
           <div class="space-y-5">
             <!-- Box da Marca Oficial -->
             <div class="h-16 rounded-2xl bg-[#0C2340] p-3 flex items-center justify-between border border-slate-800 shadow-inner">
@@ -2160,7 +2260,7 @@
         </div>
 
         <!-- CARD 3: MERCADO PAGO -->
-        <div class="sasico-white-card p-6 sm:p-7 rounded-3xl border border-blue-100/90 hover:border-[#004FFC]/40 hover:shadow-xl transition-all duration-300 flex flex-col justify-between group bg-white">
+        <div class="sasico-white-card p-6 sm:p-7 rounded-3xl border border-blue-100/90 hover:border-[#004FFC]/40 hover:shadow-xl transition-all duration-300 flex flex-col justify-between group bg-white" data-aos="fade-up" data-aos-delay="300">
           <div class="space-y-5">
             <!-- Box da Marca Oficial -->
             <div class="h-16 rounded-2xl bg-[#001E42] p-3 flex items-center justify-between border border-slate-800 shadow-inner">
@@ -2205,7 +2305,7 @@
         </div>
 
         <!-- CARD 4: IUGU -->
-        <div class="sasico-white-card p-6 sm:p-7 rounded-3xl border border-blue-100/90 hover:border-[#004FFC]/40 hover:shadow-xl transition-all duration-300 flex flex-col justify-between group bg-white">
+        <div class="sasico-white-card p-6 sm:p-7 rounded-3xl border border-blue-100/90 hover:border-[#004FFC]/40 hover:shadow-xl transition-all duration-300 flex flex-col justify-between group bg-white" data-aos="fade-up" data-aos-delay="400">
           <div class="space-y-5">
             <!-- Box da Marca Oficial -->
             <div class="h-16 rounded-2xl bg-[#0B122B] p-3 flex items-center justify-between border border-slate-800 shadow-inner">
@@ -2358,7 +2458,7 @@
     <div class="max-w-7xl mx-auto space-y-16">
       
       <!-- Topo: Pílula + Título + Subtítulo -->
-      <div class="text-center max-w-3xl mx-auto space-y-4">
+      <div class="text-center max-w-3xl mx-auto space-y-4" data-aos="fade-up">
         <div>
           <span class="pill-sasico-light">QUEM JÁ RESOLVEU O PROBLEMA CONOSCO</span>
         </div>
@@ -2740,6 +2840,51 @@
 
   <script>
     lucide.createIcons();
+
+    // Inicialização do AOS (Animate On Scroll)
+    if (typeof AOS !== 'undefined') {
+      AOS.init({
+        duration: 800,
+        easing: 'ease-out-cubic',
+        once: true,
+        offset: 80
+      });
+    }
+
+    // Efeito Typewriter no Hero mantendo 100% da Copy oficial
+    (function initHeroTypewriter() {
+      const el = document.getElementById('typewriter-hero');
+      if (!el) return;
+      const words = ['consultórios', 'advocacias', 'imobiliárias', 'empresas'];
+      let wordIdx = 0;
+      let charIdx = words[0].length;
+      let isDeleting = true;
+
+      function tick() {
+        const currentWord = words[wordIdx];
+        if (isDeleting) {
+          charIdx--;
+          el.textContent = currentWord.substring(0, charIdx);
+          if (charIdx === 0) {
+            isDeleting = false;
+            wordIdx = (wordIdx + 1) % words.length;
+            setTimeout(tick, 400);
+            return;
+          }
+          setTimeout(tick, 45);
+        } else {
+          charIdx++;
+          el.textContent = currentWord.substring(0, charIdx);
+          if (charIdx === currentWord.length) {
+            isDeleting = true;
+            setTimeout(tick, 2200);
+            return;
+          }
+          setTimeout(tick, 85);
+        }
+      }
+      setTimeout(tick, 2500);
+    })();
 
     function toggleMobileMenu() {
       const menu = document.getElementById('mobile-menu');
